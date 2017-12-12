@@ -1,3 +1,15 @@
 # ChitsUI
-Chits UI
-Readme file updated
+## App
+The app.module.ts is reponsible for bootstrapping the Angular application. Here we inject all of the dependent modules, services,
+and components.
+
+#### Routes
+
+We also define the routes for the SPA here and their related components as follows:
+* /home => HomeComponent
+* /howitworks => WorksComponent
+* /joinus => JoinComponent
+* /groups => GroupsComponent
+* /login  => LoginComponent
+
+###### (notice a pattern...?)

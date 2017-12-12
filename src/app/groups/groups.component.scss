@@ -1,0 +1,35 @@
+.main-content-image {
+    background-image: url("assets/images/chit-funds.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  .main-content-heading {
+    color: white;
+    padding-top: 150px;
+    padding-bottom: 150px;
+  }
+  .main-content-heading h3 {
+    font-size: 35px;
+  }
+  .main-content-heading  p {
+    font-size: 19px;
+  }
+  .join-context {
+    border: 1px solid #ccc;
+    border-radius: 45px;
+    margin-top: -60px;
+    background: white;
+    margin-bottom: 100px;
+  }
+  table {
+    border: 1px solid #cccccc;
+    display: inline-table;
+    margin-top: -15px;
+  }
+  thead {
+    background-color: #FF4537;
+    color: white;
+  }
+  tbody tr td {
+    border-right: 1px solid #cccccc;
+  }
