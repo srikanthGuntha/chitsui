@@ -8,11 +8,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { WorksComponent } from './works/works.component';
+import { JoinComponent } from './join/join.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'howitworks', component: WorksComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: 'joinus', component: JoinComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -20,7 +24,9 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    WorksComponent
+    WorksComponent,
+    JoinComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
