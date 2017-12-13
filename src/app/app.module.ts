@@ -11,12 +11,14 @@ import { WorksComponent } from './works/works.component';
 import { JoinComponent } from './join/join.component';
 import { LoginComponent } from './login/login.component';
 import { GroupsComponent } from './groups/groups.component';
+import { ContactComponent } from './contact/contact.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'howitworks', component: WorksComponent },
   { path: 'joinus', component: JoinComponent },
   { path: 'groups', component: GroupsComponent },
+  { path: 'contactUs', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
     WorksComponent,
     JoinComponent,
     LoginComponent,
-    GroupsComponent
+    GroupsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

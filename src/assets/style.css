@@ -1,0 +1,59 @@
+/*=====================================
+  media Qwueries
+  =====================================*/
+
+  @media screen and (max-width: 699px) and (min-width: 375px) {
+    .footer-content {
+        padding: 0px !important;
+    }
+    .main-content-heading {
+      color: white !important;
+      padding-top: 0px !important;
+      padding-bottom: 12px !important;
+    }
+    .main-content-heading h3 {
+      font-size: 20px !important;
+    }
+    .main-content-heading  p {
+      font-size: 13px !important;
+    }
+    .main-title::before {
+      left: 37% !important;
+    }
+    .home-main-context {
+      width: 100% !important;
+    }
+    .home-main-icons::before {
+      width: 100% !important;
+    }
+    .join-context {
+      border: none !important;
+      background: white !important;
+      margin-bottom: 100px !important;
+      margin-top: 0px !important;
+      border-radius: 0px !important;
+    }
+    .groups-section {
+      padding-top: 40px !important;
+      margin-bottom: 0px !important;
+    }
+    .form-group {
+      padding-bottom: 0px !important;
+    }
+    .join-title {
+      margin-top: 15px !important;
+    }
+    .login-context {
+      width: 100% !important;
+      border: none !important;
+      background: white !important;
+      margin-bottom: 100px !important;
+      margin-top: 0px !important;
+      border-radius: 0px !important;
+      padding: 0px !important;
+      padding-top: 30px !important;
+    }
+    .login-button-styles {
+      margin-left: 15px !important;
+    }
+}
