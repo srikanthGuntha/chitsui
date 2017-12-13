@@ -10,6 +10,8 @@ We also define the routes for the SPA here and their related components as follo
 * /howitworks => WorksComponent
 * /joinus => JoinComponent
 * /groups => GroupsComponent
+* /contactUs => ContactComponent
+* /aboutUs => AboutComponent
 * /login  => LoginComponent
 
 ###### (notice a pattern...?)

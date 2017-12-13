@@ -12,6 +12,7 @@ import { JoinComponent } from './join/join.component';
 import { LoginComponent } from './login/login.component';
 import { GroupsComponent } from './groups/groups.component';
 import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'joinus', component: JoinComponent },
   { path: 'groups', component: GroupsComponent },
   { path: 'contactUs', component: ContactComponent },
+  { path: 'aboutUs', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     JoinComponent,
     LoginComponent,
     GroupsComponent,
-    ContactComponent
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
