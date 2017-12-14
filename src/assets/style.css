@@ -1,3 +1,8 @@
+.main-content-image {
+    background-image: url("./images/chit-funds.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
 /*=====================================
   media Qwueries
   =====================================*/
