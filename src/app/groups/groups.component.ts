@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./groups.component.scss']
 })
 export class GroupsComponent implements OnInit {
-	private chitData:any[];
+	public chitData:any[];
 
   constructor() { }
 
