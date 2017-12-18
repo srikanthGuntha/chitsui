@@ -20,6 +20,9 @@ import { AdminChitsComponent } from './admin/chits/chits.component';
 import { AdminBranchesComponent } from './admin/branches/branches.component';
 import { ChitsService } from './chits.service';
 
+import { AuthenticationService } from './_services/authentication.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 const appGlobalRoutes: Routes = [
   { path: '**', redirectTo: '', pathMatch: 'full' }
@@ -34,7 +37,8 @@ const appRoutes: Routes = [
       { path: 'groups', component: GroupsComponent },
       { path: 'contactUs', component: ContactComponent },
       { path: 'aboutUs', component: AboutComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'dashboard', component: DashboardComponent }
   ]}
 ];
 
@@ -64,7 +68,8 @@ const appAdminRoutes: Routes = [
     AdminComponent,
     AdminHeaderComponent,
     AdminChitsComponent,
-    AdminBranchesComponent
+    AdminBranchesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +96,7 @@ const appAdminRoutes: Routes = [
 
     )
   ],
-  providers: [ChitsService],
+  providers: [ChitsService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
