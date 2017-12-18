@@ -1,78 +1,115 @@
 <section class="home-content">
-            <div class="main-content-image">
-                <div class="container">
-                    <div class="col-md-5 main-content-heading">
-                        <h3><b>Registration</b></h3>
-                        <p>Simple Hack to Increase Your Monthly Recurring Revenue</p>
+    <div class="main-content-image">
+        <div class="container">
+            <div class="col-md-5 main-content-heading">
+                <h3><b>Registration</b></h3>
+                <p>Simple Hack to Increase Your Monthly Recurring Revenue</p>
+            </div>
+        </div>
+    </div>
+    <div class="container join-context">
+        <div class="row"><h4></h4></div>
+        <div class="row row-center"><h4 class="join-title">Registration</h4></div>
+            <!-- <form [formGroup]="registrationForm" (ngSubmit)="submitForm(registrationForm.value)"> -->
+            <form (ngSubmit)="submitForm()" [formGroup]="registrationForm">
+            <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <div [ngClass]="displayFieldCss('name')">
+                      <label class="control-label required col-sm-3" for="fname">First Name:</label>
+                      <div class="col-sm-9">
+                        <input class="form-control" type="text" placeholder="John" name="name" [(ngModel)]="user.firstName" formControlName="name">
+                        <app-field-error-display 
+                          [displayError]="isFieldValid('name')" 
+                          errorMsg="Please inform your name">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+                </div>
+                  <div class="form-group" [ngClass]="displayFieldCss('dob')">
+                      <label class="control-label required col-sm-3" for="dob">DOB:</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeHolder="enter you DateOfBirth" name="dob" [(ngModel)]="user.dob" formControlName="dob">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('dob')" 
+                        errorMsg="Please inform your date of birth">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+                  <div class="form-group" [ngClass]="displayFieldCss('mobileNumber')">
+                      <label class="control-label required col-sm-3" for="mobileNumber">Mobile Number:</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeHolder="enter your phoneNumber" name="mobileNumber" [(ngModel)]="user.mobileNumber" formControlName="mobileNumber">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('mobileNumber')" 
+                        errorMsg="Please inform your mobileNumber">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+                  <div class="form-group" [ngClass]="displayFieldCss('IdType')">
+                      <label class="control-label required col-sm-3" for="id">ID Type:</label>
+                      <div class="col-sm-9">
+                        <select class="form-control" id="id" name="id"  name="IdType" [(ngModel)]="user.IdType" formControlName="IdType">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('IdType')" 
+                        errorMsg="Please select IdType">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <div [ngClass]="displayFieldCss('lname')">
+                      <label class="control-label required col-sm-3" for="lname">Last Name:</label>
+                      <div class="col-sm-9">
+                          <input class="form-control" type="text" placeholder="John" name="lname" [(ngModel)]="user.lastName" formControlName="lname">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('lname')" 
+                        errorMsg="Please inform your lastName">
+                        </app-field-error-display>
+                      </div>
                     </div>
-                </div>
+                  </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('email')">
+                      <label class="control-label required col-sm-3" for="email">Email:</label>
+                      <div class="col-sm-9">          
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" formControlName="email">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('email')" 
+                        errorMsg="Please inform your email">
+                        </app-field-error-display>
+                        </div>
+                      </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('address')">
+                      <label class="control-label required col-sm-3" for="address">Address:</label>
+                      <div class="col-sm-9">          
+                        <input type="text" class="form-control" id="address" name="address" [(ngModel)]="user.address" formControlName="address">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('address')" 
+                        errorMsg="Please inform your address">
+                        </app-field-error-display>
+                        </div>
+                      </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('idNumber')">
+                      <label class="control-label required col-sm-3" for="idNumber">ID Number:</label>
+                      <div class="col-sm-9">          
+                        <input type="text" class="form-control" id="idNumber" name="idNumber" [(ngModel)]="user.IdNumber" formControlName="idNumber">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('idNumber')" 
+                        errorMsg="Please inform your idNumber">
+                        </app-field-error-display>
+                      </div>
+                    </div>
+              </div>
             </div>
-            <div class="container join-context">
-                <div class="row"><h4></h4></div>
-                <div class="row row-center"><h4 class="join-title">Registration</h4></div>
-                <div class="row">
-                   <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="control-label col-sm-3" for="fname">First Name:</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="fname" name="fname">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-sm-3" for="dob">Date of Birth:</label>
-                        <div class="col-sm-9">          
-                          <input type="text" class="form-control" id="dob" name="dob">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-sm-3" for="phone">Mobile Number:</label>
-                        <div class="col-sm-9">          
-                          <input type="text" class="form-control" id="phone" name="phone">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-sm-3" for="id">ID Type:</label>
-                        <div class="col-sm-9">
-                          <select class="form-control" id="id" name="id">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                          </select>
-                        </div>
-                      </div>
-                   </div>
-                   <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="control-label col-sm-3" for="lname">Last Name:</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="lname" name="lname">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-sm-3" for="email">Email:</label>
-                        <div class="col-sm-9">          
-                          <input type="email" class="form-control" id="email" name="email">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-sm-3" for="address">Address:</label>
-                        <div class="col-sm-9">          
-                          <input type="text" class="form-control" id="address" name="address">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-sm-3" for="idNumber">ID Number:</label>
-                        <div class="col-sm-9">          
-                          <input type="text" class="form-control" id="idNumber" name="idNumber">
-                        </div>
-                      </div>
-                   </div>
-                </div>
-                <div class="row row-center">
-                   <button class="btn btn-create" type="submit"
-                    (click)="btnClickRegister()" >
-                  Create Account</button>
-                </div>
+            <div class="row row-center">
+                <button class="btn btn-create" type="submit" >Create Account</button>
             </div>
-      </section>
+        </form>
+    </div>
+</section>
