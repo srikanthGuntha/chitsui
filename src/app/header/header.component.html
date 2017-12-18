@@ -1,1 +1,45 @@
-<div>HEADER</div>
+<div class="top-bar"></div>
+<div class="top-bar-menu">
+   <div class="col-md-3 col-xs-8 top-bar-logo">
+       <img src="assets/images/strikensun.png" alt="strikensun"/>
+   </div>
+   <div class="col-md-6 top-bar-contact hidden-xs">
+      <span class="top-bar-contact-details">Call us: +91--9999999999</span>
+      <span>Email: support@gmail.com</span>
+   </div>
+   <div class="col-md-3 col-xs-4 top-bar-social-icons">
+      <a href="#"><i class="fa fa-facebook-square fa-3x hidden-xs"  ></i></a>
+      <a href="#"><i class="fa fa-twitter-square fa-3x hidden-xs"  ></i></a>
+      <a href="#"><i class="fa fa-google-plus-square fa-3x hidden-xs"  ></i></a>
+      <button type="submit" class="btn btn-chit">Join a Chit</button>
+   </div>
+</div>
+<nav class="navbar navbar-inverse">
+   <div class="col-md-2"></div>
+   <div class="container-fluid col-md-9">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>                        
+         </button>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+         <li><a routerLink ="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+         <li><a routerLink ="/howitworks" routerLinkActive="active">How it Work's</a></li>
+         <li><a routerLink ="/joinus" routerLinkActive="active">Join Us</a></li>
+         <li><a routerLink ="/groups" routerLinkActive="active">Groups</a></li>
+         <li><a routerLink ="/aboutUs" routerLinkActive="active">About Us</a></li>
+         <li><a routerLink ="/contactUs" routerLinkActive="active">Contact Us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+         <li>
+            <a routerLink ="/login" routerLinkActive="active">
+              Login/Register
+            </a>
+          </li>
+      </ul>
+    </div>
+   </div>
+</nav>

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -13,17 +14,41 @@ import { LoginComponent } from './login/login.component';
 import { GroupsComponent } from './groups/groups.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminHeaderComponent } from './admin/header/header.component';
+import { AdminChitsComponent } from './admin/chits/chits.component';
+import { AdminBranchesComponent } from './admin/branches/branches.component';
+import { ChitsService } from './chits.service';
+
+
+const appGlobalRoutes: Routes = [
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+];
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'howitworks', component: WorksComponent },
-  { path: 'joinus', component: JoinComponent },
-  { path: 'groups', component: GroupsComponent },
-  { path: 'contactUs', component: ContactComponent },
-  { path: 'aboutUs', component: AboutComponent },
-  { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', children:[
+     { path: '', component: HomeComponent },
+     { path: '' , component: HeaderComponent, outlet: 'header'},
+      { path: 'howitworks', component: WorksComponent },
+      { path: 'joinus', component: JoinComponent },
+      { path: 'groups', component: GroupsComponent },
+      { path: 'contactUs', component: ContactComponent },
+      { path: 'aboutUs', component: AboutComponent },
+      { path: 'login', component: LoginComponent }
+  ]}
 ];
+
+const appAdminRoutes: Routes = [
+  { path: 'admin', children:[
+      { path: '', children:[
+      { path: '', component: AdminComponent },
+        { path: '', component: AdminHeaderComponent, outlet:'header' },
+        {path:'chits',component: AdminChitsComponent},
+         {path:'branches',component: AdminBranchesComponent}
+      ]}
+  ]}
+];
+
 
 @NgModule({
   declarations: [
@@ -35,7 +60,11 @@ const appRoutes: Routes = [
     LoginComponent,
     GroupsComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    AdminComponent,
+    AdminHeaderComponent,
+    AdminChitsComponent,
+    AdminBranchesComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +76,22 @@ const appRoutes: Routes = [
       {
         useHash: true
       }
+    ),
+    RouterModule.forRoot(
+      appAdminRoutes,
+      {
+        useHash: true
+      }
+    ),
+    RouterModule.forRoot(
+      appGlobalRoutes,
+      {
+        useHash: true
+      }
+
     )
   ],
-  providers: [],
+  providers: [ChitsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
