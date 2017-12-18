@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -22,6 +22,7 @@ import { ChitsService } from './chits.service';
 
 import { AuthenticationService } from './_services/authentication.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
 
 
 const appGlobalRoutes: Routes = [
@@ -69,11 +70,13 @@ const appAdminRoutes: Routes = [
     AdminHeaderComponent,
     AdminChitsComponent,
     AdminBranchesComponent,
-    DashboardComponent
+    DashboardComponent,
+    FieldErrorDisplayComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule,
     RouterModule.forRoot(
