@@ -12,12 +12,12 @@ export class GroupsComponent implements OnInit {
 
   ngOnInit() {
   	this.chitData = [
-  	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-  	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-  	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-  	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-  	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-  	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"}
+    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
+    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
+    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
+    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
+    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
+    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"}
   	];
   }
 
