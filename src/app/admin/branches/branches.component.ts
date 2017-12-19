@@ -4,7 +4,8 @@ import { ChitsService } from '../../chits.service';
 
 @Component({
   selector: 'app-admin-branches',
-  templateUrl: './branches.component.html'
+  templateUrl: './branches.component.html',
+  styleUrls: ['./branches.component.scss']
 })
 export class AdminBranchesComponent implements OnInit {
 
