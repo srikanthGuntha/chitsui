@@ -12,4 +12,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  public btnClickLogout(): void {
+  	localStorage.removeItem('currentUser');
+  }
+
 }

@@ -28,8 +28,10 @@ export class LoginComponent implements OnInit {
 	}
 
 	public btnClickLogin():void {
-		this.username = "bakkupavan@gmail.com";
-		this.password = "test123";
+		// this.username = "bakkupavan@gmail.com";
+		// this.password = "test123";
+		this.username = "admin";
+		this.password = "admin";
 
 		if(this.username && this.password) {
 			this.authenticationService.login(this.username, this.password)
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
 					this.error = "Username and Password are required!";
 				} else {
 					if(result.role === "user") {
-						this.router.navigate(['/dashboard']);
+						this.router.navigate(['/user']);
 					} else if(result.role === "admin") {
 						this.router.navigate(['/admin']);
 					}
