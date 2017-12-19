@@ -37,11 +37,12 @@ export class BranchService{
       });
   }
 
-  // deletebranches(data): Observable<any> {
-  //   return this.http.delete(this.serviceUrl + "deletebranches", data, {headers: this.headers})
-  //     .map((response: Response) => {
-  //         console.log(response);
-  //     });
-  // }
+  deletebranches(data): Observable<any> {
+    this.headers.set("x-delete-item-data", data); 
+    return this.http.delete(this.serviceUrl + "deletebranches", {headers: this.headers})
+      .map((response: Response) => {
+          console.log(response);
+      });
+  }
 
 }

@@ -17,9 +17,9 @@ export class CommonComponent implements OnInit {
 	public getRequestHeaders():any {
 	    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	    if( currentUser && currentUser.token ) {
-	    	return new Headers({
-		        'x-access-token': currentUser.token
-		    });
+	    	let headers = new Headers();
+	    	headers.set('x-access-token', currentUser.token);
+	    	return headers;
 	    } else {
 			this.router.navigate(['/login'], { queryParams: { istokeninfo: false } });
 	    }
