@@ -49,6 +49,7 @@ const appAdminRoutes: Routes = [
   { path: 'admin', children:[
       { path: '', children:[
       { path: '', component: AdminComponent },
+      { path: '', redirectTo: 'chits', pathMatch: 'full' },
       { path: '', component: AdminHeaderComponent, outlet:'header' },
       { path: 'chits', component: AdminChitsComponent},
       { path: 'branches', component: AdminBranchesComponent}
@@ -60,6 +61,7 @@ const appUserRoutes: Routes = [
   { path: 'user', children:[
       { path: '', children:[
       { path: '', component: UserComponent },
+      { path: '', redirectTo: 'chits', pathMatch: 'full' },
       { path: '', component: DashboardComponent, outlet:'header' },
       { path: '', component: FooterComponent, outlet:'footer' },
       { path: 'howitworks', component: WorksComponent },
