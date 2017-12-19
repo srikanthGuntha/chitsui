@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChitsService } from '../../chits.service';
 
 
 @Component({
@@ -16,7 +15,7 @@ export class AdminBranchesComponent implements OnInit {
       {id: 4, branchName: 'Banjara hills'},
   ];
 
-  constructor(private chitsService: ChitsService) { 
+  constructor() { 
   	// this.chitsService.getChits().subscribe(response =>{
   	// 	console.log(response);
   	// })
