@@ -21,8 +21,11 @@ import { AdminBranchesComponent } from './admin/branches/branches.component';
 import { ChitsService } from './chits.service';
 
 import { AuthenticationService } from './_services/authentication.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
+import { UserComponent } from './user/user.component';
+import { FooterComponent } from './footer/footer.component';
+import { UserChitsComponent } from './user/chits/chits.component';
 
 
 const appGlobalRoutes: Routes = [
@@ -31,15 +34,14 @@ const appGlobalRoutes: Routes = [
 
 const appRoutes: Routes = [
   { path: '', children:[
-     { path: '', component: HomeComponent },
-     { path: '' , component: HeaderComponent, outlet: 'header'},
+      { path: '', component: HomeComponent },
+      { path: '' , component: HeaderComponent, outlet: 'header'},
       { path: 'howitworks', component: WorksComponent },
       { path: 'joinus', component: JoinComponent },
       { path: 'groups', component: GroupsComponent },
       { path: 'contactUs', component: ContactComponent },
       { path: 'aboutUs', component: AboutComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'login', component: LoginComponent }
   ]}
 ];
 
@@ -47,9 +49,23 @@ const appAdminRoutes: Routes = [
   { path: 'admin', children:[
       { path: '', children:[
       { path: '', component: AdminComponent },
-        { path: '', component: AdminHeaderComponent, outlet:'header' },
-        {path:'chits',component: AdminChitsComponent},
-         {path:'branches',component: AdminBranchesComponent}
+      { path: '', component: AdminHeaderComponent, outlet:'header' },
+      { path: 'chits', component: AdminChitsComponent},
+      { path: 'branches', component: AdminBranchesComponent}
+      ]}
+  ]}
+];
+
+const appUserRoutes: Routes = [
+  { path: 'user', children:[
+      { path: '', children:[
+      { path: '', component: UserComponent },
+      { path: '', component: DashboardComponent, outlet:'header' },
+      { path: '', component: FooterComponent, outlet:'footer' },
+      { path: 'howitworks', component: WorksComponent },
+      { path: 'groups', component: GroupsComponent },
+      { path: 'chits', component: UserChitsComponent },
+      { path: 'branches', component: UserChitsComponent }
       ]}
   ]}
 ];
@@ -71,7 +87,10 @@ const appAdminRoutes: Routes = [
     AdminChitsComponent,
     AdminBranchesComponent,
     DashboardComponent,
-    FieldErrorDisplayComponent
+    FieldErrorDisplayComponent,
+    UserComponent,
+    FooterComponent,
+    UserChitsComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +106,12 @@ const appAdminRoutes: Routes = [
     ),
     RouterModule.forRoot(
       appAdminRoutes,
+      {
+        useHash: true
+      }
+    ),
+    RouterModule.forRoot(
+      appUserRoutes,
       {
         useHash: true
       }
