@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { BranchService } from '../_services/branches.service';
 
 @Component({
   selector: 'app-admin-branches',
@@ -15,20 +15,21 @@ export class AdminBranchesComponent implements OnInit {
       {id: 4, branchName: 'Banjara hills'},
   ];
 
-  constructor() { 
-  	// this.chitsService.getChits().subscribe(response =>{
-  	// 	console.log(response);
-  	// })
-  }
+  constructor(private branchService: BranchService) {}
 
   ngOnInit() {
-  	//this.getChits();
+  	this.branchService.getbranches()
+      .subscribe(result => {
+        console.log(result);
+      });
   }
 
-  // getChits(): void {
-  // 	console.log("getChits",this.chitsService.getChits());
-
-  //   this.chitsService.getChits();
-  // }
+  private deleteBranch():any {
+    // change the "1" with the object id from the response
+    this.branchService.deletebranches("1")
+      .subscribe(result => {
+        console.log(result);
+      });
+  }
 
 }
