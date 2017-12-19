@@ -33,6 +33,7 @@ const appRoutes: Routes = [
   { path: '', children:[
       { path: '', component: HomeComponent },
       { path: '' , component: HeaderComponent, outlet: 'header'},
+      { path: '', component: FooterComponent, outlet:'footer' },
       { path: 'howitworks', component: WorksComponent },
       { path: 'joinus', component: JoinComponent },
       { path: 'groups', component: GroupsComponent },
