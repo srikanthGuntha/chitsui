@@ -1,53 +1,15 @@
-<!-- <div class="container">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Striken Sun</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right right-inner-addon">
-            <div>
-              <i class="fa fa-search"></i>
-              <input type="search" class="form-control" placeholder="Search..." />
-            </div>
-          </form>
-        </div>
-      </div>
-    </nav>
-    <div class="row">
-    	<div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li><a [routerLink]="['chits']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><i class="fa fa-table"></i>&nbsp; Chits</a></li>
-            <li><a [routerLink]="['branches']" routerLinkActive="active"><i class="fa fa-cubes"></i>&nbsp; Branches</a></li>
-            <li><a href=""><i class="fa fa-user-o" aria-hidden="true"></i>&nbsp; Chit Id's</a></li>
-          </ul>
-        </div>
-    </div>
-</div> -->
 <div class="topbar">
    <div class="topbar-left">
-      <div class="text-center">
-         <a href="index.html" class="logo">
+      <div class="text-center admin-logo">
+         <a [routerLink]="['chits']" class="logo">
          <i class="zmdi zmdi-toys icon-c-logo"></i><span>Striken Sun</span>
          </a>
       </div>
    </div>
    <div class="navbar navbar-default" role="navigation">
-      <div class="container">
+      <div class="container-fluid">
          <div class="">
-            <div class="pull-left">
+            <!-- <div class="pull-left">
                <div class="navbar-header">
                  <button type="button" class="navbar-toggle open-left" data-toggle="collapse" data-target="#myNavbar">
                  <span class="icon-bar"></span>
@@ -56,21 +18,24 @@
                  </button>
               </div>
                <span class="clearfix"></span>
+            </div> -->
+            <div class="navbar-left admin-dashboard pull-left hidden-xs">
+              <h3>Admin Dashboard</h3>
             </div>
-            <div class="navbar-left app-search pull-left hidden-xs">
+            <!-- <div class="navbar-left app-search pull-left hidden-xs">
                <input type="text" placeholder="Search..." class="form-control">
                <a><i class="fa fa-search"></i></a>
-            </div>
+            </div> -->
             <ul class="nav navbar-nav navbar-right pull-right">
                <li class="dropdown user-box">
                   <a href="" class="dropdown-toggle waves-effect waves-light profile " data-toggle="dropdown" aria-expanded="true">
                      <i _ngcontent-c1="" class="fa fa-user-circle user-icon"></i>
                   </a>
                   <ul class="dropdown-menu">
-                     <li><a href=""><i class="ti-user m-r-5"></i> Profile</a></li>
+                     <!-- <li><a href=""><i class="ti-user m-r-5"></i> Profile</a></li>
                      <li><a href=""><i class="ti-settings m-r-5"></i> Settings</a></li>
-                     <li><a href=""><i class="ti-lock m-r-5"></i> Lock screen</a></li>
-                     <li><a href=""><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                     <li><a href=""><i class="ti-lock m-r-5"></i> Lock screen</a></li> -->
+                     <li><a (click)="btnClickLogout()"><i class="ti-power-off m-r-5"></i> Logout</a></li>
                   </ul>
                </li>
             </ul>
@@ -90,7 +55,7 @@
                <a [routerLink]="['branches']" routerLinkActive="active" class="waves-effect"><i class="fa fa-cubes"></i> <span> Branches </span> </a>
             </li>
             <li class="has_sub">
-               <a href="" class="waves-effect"><i class="fa fa-user-o"></i> <span> Chit Id's </span> </a>
+               <a [routerLink]="['chitids']" routerLinkActive="active" class="waves-effect"><i class="fa fa-user-o"></i> <span> Chit Id's </span> </a>
             </li>
          </ul>
          <div class="clearfix"></div>

@@ -3,6 +3,21 @@
   border-bottom: 1px solid #eee;
 }
 
+.admin-logo{
+  color: #FF6072;
+
+  a {
+    color: #FF6072;
+    text-decoration: none;
+  }
+}
+
+.admin-dashboard {
+  margin-left: 40px;
+  color: #fff;
+  opacity: 0.8;
+}
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
@@ -150,7 +165,9 @@ File: Menu
   width: 180px;
 }
 .logo {
-  color: #435966 !important;
+  color: #FF6072;
+  text-decoration: none;
+  // color: #435966 !important;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: .05em;
@@ -196,6 +213,10 @@ File: Menu
 }
 .nav > li > a i {
   font-size: 16px;
+}
+.dropdown-menu {
+  border: 1px;
+  border-radius: 6px;
 }
 .dropdown-menu-lg {
   width: 300px;
