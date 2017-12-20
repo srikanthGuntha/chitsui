@@ -1,5 +1,8 @@
+
 .active {
-    color: #FF4537 !important;
+    background-color: #fff !important;
+    color: #ff413ed9 !important;
+    // color: #863e3e !important;
     }
   
    .top-bar {
@@ -38,7 +41,9 @@
     color: white;
   }
   .navbar-inverse {
-    background-color:  #313131;
+    background-color: #ff413ed9;
+    // background-color: #FF413E; //#313131;
+    border-color: #ff413ed9;
   }
   .navbar {
     border-radius: 0px;

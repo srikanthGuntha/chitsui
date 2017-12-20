@@ -40,7 +40,7 @@
                   <div [ngClass]="displayFieldCss('password')">
                   <label class="control-label col-sm-3" for="password" required>Password:</label>
                   <div class="col-sm-8">
-                     <input type="text" class="form-control" id="password" name="password" [(ngModel)]="user.password" formControlName="password">
+                     <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" formControlName="password">
                      <app-field-error-display 
                           [displayError]="isFieldValid('password')" 
                           errorMsg="Please enter valid Password">
