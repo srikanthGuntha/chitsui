@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { GetDataService } from '../_services/getdata.service';
 
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss']
 })
+
 export class GroupsComponent implements OnInit {
+  public chitgroups: any[];
 	public chitData:any[];
 
-  constructor() { }
+  constructor(private getdataservice:GetDataService) { }
 
   ngOnInit() {
-  	this.chitData = [
-    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"},
-    	{"value": 100000, "months": 50, "subscription": 2000, "number": "SSC002"}
-  	];
+    this.getdataservice.getchitgroups()
+      .subscribe(result => {
+        console.log(result);
+        this.chitData = result;
+      });
   }
-
 }

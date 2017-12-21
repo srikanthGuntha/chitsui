@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // services
 import { AuthenticationService } from './_services/authentication.service';
+import { GetDataService } from './_services/getdata.service';
 
 // non auth components
 import { AppComponent } from './app.component';
@@ -102,7 +103,7 @@ const appUserRoutes: Routes = [
 
     )
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, GetDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
