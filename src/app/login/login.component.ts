@@ -58,6 +58,9 @@ export class LoginComponent implements OnInit {
 		if (this.loginForm.valid) {
 			this.authenticationService.login(this.user.username, this.user.password)
 			.subscribe(result => {
+					if (typeof (Storage) !== undefined ) {
+						sessionStorage.setItem('role', result.role);
+					}
 					if(result.role === "user") {
 						this.router.navigate(['/user']);
 					} else if(result.role === "admin") {
