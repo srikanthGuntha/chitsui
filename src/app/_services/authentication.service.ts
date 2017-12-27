@@ -26,8 +26,10 @@ export class AuthenticationService {
                 token: loggedinuser.data.token 
               }));
             let role = loggedinuser.data.role;
+            let id = loggedinuser.data._id;
             return {
-              role: role
+              role: role,
+              id: id
             };
           } else {
             return false;
@@ -40,6 +42,18 @@ export class AuthenticationService {
 
   register(data): Observable<boolean> {
     return this.http.post(this.serviceUrl + "register", data)
+      .map((response: Response) => {
+        let userdata = response && response.json();
+        if(userdata["data"]) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+  }
+
+  joinChit(data): Observable<boolean> {
+    return this.http.post(this.serviceUrl + "joinchit", data)
       .map((response: Response) => {
         let userdata = response && response.json();
         if(userdata["data"]) {
