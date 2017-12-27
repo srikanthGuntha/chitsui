@@ -29,7 +29,7 @@
                   <div class="form-group" [ngClass]="displayFieldCss('dob')">
                       <label class="control-label required col-sm-3" for="dob">DOB:</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" placeHolder="enter you DateOfBirth" name="dob" [(ngModel)]="user.dob" formControlName="dob">
+                        <input type="date" class="form-control" placeHolder="enter you DateOfBirth" name="dob" [(ngModel)]="user.dob" formControlName="dob" id="datePicker">
                         <app-field-error-display 
                         [displayError]="isFieldValid('dob')" 
                         errorMsg="Please inform your date of birth">
