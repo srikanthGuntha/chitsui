@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataService } from '../_services/getdata.service';
-import { AuthenticationService } from '../_services/authentication.service';
 import { IsLoginService } from "../_services/login.service";
+import { ChitsService } from "../_services/getchitsdata.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -14,7 +14,7 @@ export class GroupsComponent implements OnInit {
   public chitgroups: any[];
 	public chitData:any[];
 
-  constructor(private getdataservice:GetDataService, private authenticationService: AuthenticationService, private isLoginService: IsLoginService, private router: Router) { }
+  constructor(private getdataservice:GetDataService, private isLoginService: IsLoginService, private router: Router, private chitsDataService: ChitsService) { }
 
   ngOnInit() {
     this.getdataservice.getchitgroups()
@@ -34,7 +34,7 @@ export class GroupsComponent implements OnInit {
   }
 
   private joinChitUser(data) {
-    this.authenticationService.joinChit(data)
+    this.chitsDataService.joinChit(data)
         .subscribe(result => {
           this.router.navigate(['/user']);
         });

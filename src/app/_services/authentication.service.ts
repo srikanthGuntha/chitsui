@@ -52,19 +52,8 @@ export class AuthenticationService {
       });
   }
 
-  joinChit(data): Observable<boolean> {
-    return this.http.post(this.serviceUrl + "joinchit", data)
-      .map((response: Response) => {
-        let userdata = response && response.json();
-        if(userdata["data"]) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-  }
-
   logout(): void {
     localStorage.removeItem('currentUser');
+    sessionStorage.clear();
   }
 }
