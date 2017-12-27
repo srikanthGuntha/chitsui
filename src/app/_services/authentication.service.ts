@@ -26,8 +26,10 @@ export class AuthenticationService {
                 token: loggedinuser.data.token 
               }));
             let role = loggedinuser.data.role;
+            let id = loggedinuser.data._id;
             return {
-              role: role
+              role: role,
+              id: id
             };
           } else {
             return false;
@@ -52,5 +54,6 @@ export class AuthenticationService {
 
   logout(): void {
     localStorage.removeItem('currentUser');
+    sessionStorage.clear();
   }
 }

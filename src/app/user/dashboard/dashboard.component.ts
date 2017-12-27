@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
   public btnClickLogout(): void {
   	localStorage.removeItem('currentUser');
+  	sessionStorage.clear();
   }
 
 }

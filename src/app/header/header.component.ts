@@ -6,9 +6,4 @@ import { Component } from '@angular/core';
     styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent{
-
-	private logout() {
-		sessionStorage.clear();
-	}
-}
+export class HeaderComponent{}

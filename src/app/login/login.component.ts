@@ -60,8 +60,9 @@ export class LoginComponent implements OnInit {
 			.subscribe(result => {
 					if (typeof (Storage) !== undefined ) {
 						sessionStorage.setItem('role', result.role);
+						sessionStorage.setItem('id', result.id);
 					}
-					if(result.role === "user") {
+					if (result.role === "user") {
 						this.router.navigate(['/user']);
 					} else if(result.role === "admin") {
 						this.router.navigate(['/admin']);

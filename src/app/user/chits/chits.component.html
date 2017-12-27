@@ -1,5 +1,8 @@
 <section class="home-content">
-    <div class="chits">
+    <div class="chits" *ngIf='!chitsData.length'>
         <h1>No Chits to show</h1>
+    </div>
+    <div class="chits" *ngIf='chitsData.length'>
+        <h1>Yet to Configure Data</h1>
     </div>
 </section>

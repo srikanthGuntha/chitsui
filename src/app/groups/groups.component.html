@@ -16,6 +16,7 @@
 				            <td>Months</td>
 				            <td>Subscription</td>
 				            <td>Chit Number</td>
+				            <td>Action</td>
 				        </tr>
 				    </thead>
 				    <tbody>
@@ -25,6 +26,7 @@
 				            <td>{{data.tenure}}</td>
 				            <td>{{data.subfee}}</td>
 				            <td>{{data.chituniqid}}</td>
+				            <td><button type="button" (click)="joinChit(data.chituniqid)" class="btn btn-primary">Join Chit</button></td>
 				        </tr>
 				    </tbody>
 				</table>
