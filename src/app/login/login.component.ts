@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
+import { LoaderService } from '../_services/loader.service';
 import { FormBuilder, FormGroup, FormsModule, FormControl, Validators , ReactiveFormsModule} from '@angular/forms';
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
 	public user:any = {};
   	loginForm : FormGroup;
 
-	constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private formBuilder: FormBuilder) { }
+	constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private loaderService: LoaderService) { }
 
 	ngOnInit() {
 		this.istokeninfo = this.activatedRoute
@@ -55,9 +56,11 @@ export class LoginComponent implements OnInit {
 	}
 
 	public btnClickLogin():void {
+		this.loaderService.display(true);
 		if (this.loginForm.valid) {
 			this.authenticationService.login(this.user.username, this.user.password)
 			.subscribe(result => {
+					this.loaderService.display(false);
 					if (typeof (Storage) !== undefined ) {
 						sessionStorage.setItem('role', result.role);
 						sessionStorage.setItem('id', result.id);
@@ -70,6 +73,7 @@ export class LoginComponent implements OnInit {
 			});
 		} else {
 			this.validateAllFormFields(this.loginForm);
+			this.loaderService.display(false);
 		}
 	}
 

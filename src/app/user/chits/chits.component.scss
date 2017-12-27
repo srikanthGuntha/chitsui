@@ -5,3 +5,22 @@
     margin: 50px;
     color: red;
 }
+.join-context {
+    border: 1px solid #ccc;
+    border-radius: 45px;
+    margin-top: 20px;
+    background: white;
+    margin-bottom: 100px;
+  }
+  table {
+    border: 1px solid #cccccc;
+    display: inline-table;
+    margin-top: 15px;
+  }
+  thead {
+    background-color: #FF4537;
+    color: white;
+  }
+  tbody tr td {
+    border-right: 1px solid #cccccc;
+  }

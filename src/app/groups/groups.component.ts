@@ -26,7 +26,7 @@ export class GroupsComponent implements OnInit {
   private joinChit(chitId) {
     this.isLoginService.isLoggedIn().then((result: any) => {
       if (result.role && result.role == 'user') {
-        this.joinChitUser({id: result.id, chitId: chitId});
+        this.joinChitUser({joinchitid: chitId});
       } else {
         this.router.navigate(['/login']);
       }

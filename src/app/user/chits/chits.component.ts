@@ -21,13 +21,12 @@ export class UserChitsComponent implements OnInit {
   		}
   	});
 
-  	// this.chitsdataservice.getChitData().subscribe(result => {
-   //    	if (result.length) {
-   //    		this.chitsData = result;
-   //    	} else {
-   //    		this.chitsData = [];
-   //    	}
-   //    });
-
+  	this.chitsdataservice.getChitData().subscribe(result => {
+      	if (result.length) {
+      		this.chitsData = result;
+      	} else {
+      		this.chitsData = [];
+      	}
+      });
 	}
 }

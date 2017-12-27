@@ -2,7 +2,24 @@
     <div class="chits" *ngIf='!chitsData.length'>
         <h1>No Chits to show</h1>
     </div>
-    <div class="chits" *ngIf='chitsData.length'>
-        <h1>Yet to Configure Data</h1>
+    <div *ngIf='chitsData.length'>
+        <div class="container join-context groups-section">
+            	<table class="table table-hover">
+				    <thead>
+				        <tr>
+				            <td>S.no</td>
+				            <td>Chit Value</td>
+				            <td>Status</td>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <tr *ngFor="let data of chitsData; let row_no = index">
+				            <td>{{row_no + 1}}</td>
+				            <td>{{data.joinchitid}}</td>
+				            <td><span *ngIf="data.joinchitstatus == '0'">Pending</span><span *ngIf="data.joinchitstatus == '1'">Progress</span></td>
+				        </tr>
+				    </tbody>
+				</table>
+            </div>
     </div>
 </section>
