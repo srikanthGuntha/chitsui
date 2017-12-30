@@ -8,46 +8,79 @@
       </div>
       <div class="row">
         <div class="col-lg-6">
-          <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Chit Value</th>
-                  <th>Tenure</th>
-                  <th>Sub Fee</th>
-                  <th>Branch</th>
-                  <th>Chit Id</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>5,00,000</td>
-                  <td>25</td>
-                  <td>2000</td>
-                  <td>Madhapur</td>
-                  <td>SS003421</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>10,00,000</td>
-                  <td>45</td>
-                  <td>8000</td>
-                  <td>Kukatpally</td>
-                  <td>SS003422</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>20,00,000</td>
-                  <td>30</td>
-                  <td>7000</td>
-                  <td>Ameerpet</td>
-                  <td>SS003423</td>
-                </tr>
-              </tbody>
+          <button class="btn btn-success btn-circle pull-right"
+          (click)="addChit()"
+          title="Add Chit">
+          <i class="glyphicon glyphicon-plus"></i>
+          </button>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Branch Name</th>
+                <th>Chit Value</th>
+                <th>Fee</th>
+                <th>Tenure</th>
+              </tr>
+            </thead>
+            <tbody>
+                <template [ngTemplateOutlet]="loadTemplate(chit)"></template>
+            </tbody>
+            <tbody>
+              <tr *ngFor="let chit of chits;let i=index">
+                <td>{{i + 1}}</td>
+                <td>{{chit.branch}}</td>
+                <td>{{chit.chitvalue}}</td>
+                <td>{{chit.subfee}}</td>
+                <td>{{chit.tenure}}</td>
+                <td style="width: 70px;">
+                  <i class="glyphicon glyphicon-edit pointer"
+                  (click)="editChit(chit.id)" title="Edit"></i>
+                  <i class="glyphicon glyphicon-trash pointer"
+                  (click)="delete(chit.id)" title="Delete"></i>
+                  
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- <template #readOnlyTemplate let-chit>
+  <td>{{chit._id}}</td>
+  <td>{{emp.BranchName}}</td>
+  <td>{{emp.BranchId}}</td>
+  <td>
+    <input type="button" value="Edit" class="btn btn-default" (click)="editChit(chit)" />
+  </td>
+  <td>
+    <input type="button" value="Delete" (click)="deleteChit(chit)" class="btn btn-danger" />
+  </td>
+  </template> -->
+  <template #editTemplate>
+  <td>
+    <input type="text" [(ngModel)]="selemp._id" readonly disabled/>
+  </td>
+  <td>
+    <select [(ngModel)]="selectedBranch._id">
+     <option *ngFor="let branch of branches" value= {{branch._id}}>{{branch.branchname}}</option>
+   </select>
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="selemp.chitvalue" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="selemp.subfee" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="selemp.tenure" />
+  </td>
+  
+  <td>
+    <input type="button" value="Save" (click)="saveChit()" class="btn btn-success" />
+  </td>
+  <td>
+    <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+  </td>
+  </template>

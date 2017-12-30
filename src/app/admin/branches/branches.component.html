@@ -8,30 +8,53 @@
       </div>
       <div class="row">
         <div class="col-lg-4">
+         <button class="btn btn-success btn-circle pull-right" [disabled]="branchSelected()"
+          (click)="addBranch()"
+          title="Add Branch">
+          <i class="glyphicon glyphicon-plus"></i>
+          </button>
           <table class="table table-striped">
               <thead>
                 <tr>
                   <th>Sno</th>
                   <th>Branch Name</th>
+                  <th>Update/Delete</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Kukatpally</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Madhapur</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Ameerpet</td>
-                </tr>
-              </tbody>
+                  <tr *ngFor="let branch of branches;let i=index">
+                     <template [ngTemplateOutlet]="loadTemplate(branch)" [ngOutletContext]="{ $implicit: branch, index: i }"></template>
+                  </tr>
+               </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<template #readOnlyTemplate let-branch let-index="index">
+    <td>{{index+1}}</td>
+    <td>{{branch.branchname}}</td>
+    <td style="width: 70px;">
+      <i class="glyphicon glyphicon-edit pointer"
+      (click)="editBranch(branch)" title="Edit"></i>
+      <i class="glyphicon glyphicon-trash pointer"
+      (click)="deleteBranch(branch)" title="Delete"></i>
+    </td>
+</template>
+
+<template #editTemplate let-index="index">
+  <td><input type="text" [(ngModel)]="selectedBranch._id" readonly disabled/></td>
+  <td><input type="text" [(ngModel)]="selectedBranch.branchname" /></td>
+
+   <td>
+      <i class="glyphicon glyphicon-ok pointer"
+      (click)="saveBranch()" title="Edit"></i>
+      <i class="glyphicon glyphicon-remove pointer"
+      (click)="cancel()" title="Delete"></i>
+   </td>
+
+ <!--  <td><input type="button" value="Save" (click)="saveBranch()" class="btn btn-success" /></td>
+  <td><input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" /></td> -->
+</template>
