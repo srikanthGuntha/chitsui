@@ -3,6 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { globals } from '../../config/globals';
 import { CommonComponent } from '../../config/common.component';
 import { Observable } from 'rxjs';
+import {Branch} from '../../models/branch.model';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -16,33 +17,33 @@ export class BranchService{
     this.headers = this.commonComponent.getRequestHeaders();
   }
 
-  getbranches(): Observable<any> {
-    return this.http.get(this.serviceUrl + "getbranches", {headers: this.headers})
+   getbranches(): Observable<any> {
+      return this.http.get(this.serviceUrl+ "getbranches", {headers: this.headers})
       .map((response: Response) => {
-          console.log(response);
+        console.log(response);
+         response = response.json();
+         return response["data"];
       });
-  }
+   }
 
-  savebranches(data): Observable<any> {
-    return this.http.post(this.serviceUrl + "savebranches", data, {headers: this.headers})
-      .map((response: Response) => {
-          console.log(response);
-      });
-  }
+   addBranch(branch : Branch) : Observable < Response > {
+      return this
+            .http
+            .post(this.serviceUrl+'savebranches', {branchname:branch.branchname}, {headers:this.headers})
+   }
 
-  updatebranches(data): Observable<any> {
-    return this.http.put(this.serviceUrl + "updatebranches", data, {headers: this.headers})
-      .map((response: Response) => {
-          console.log(response);
-      });
-  }
+   updatebranches(id:string,branch : Branch): Observable<any> {
+      return this.http.put(this.serviceUrl+"updatebranches?id="+ branch._id, branch, {headers: this.headers})
+         .map((response: Response) => {
+             console.log(response);
+         });
+   }
 
-  deletebranches(data): Observable<any> {
-    this.headers.set("x-delete-item-data", data); 
-    return this.http.delete(this.serviceUrl + "deletebranches", {headers: this.headers})
+   deletebranches(data): Observable<any> {
+      return this.http.delete(this.serviceUrl+"deletebranches?id="+data._id, {headers: this.headers})
       .map((response: Response) => {
           console.log(response);
       });
-  }
+   }
 
 }

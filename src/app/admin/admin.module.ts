@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { BranchService } from './_services/branches.service';
+import { ChitsService } from './_services/chits.services';
 import { CommonComponent } from '../config/common.component';
 
 import { AdminComponent } from './admin.component';
@@ -35,9 +37,10 @@ const appAdminRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     RouterModule,
+    CommonModule,
     RouterModule.forChild(appAdminRoutes)
   ],
-  providers: [BranchService],
+  providers: [BranchService,ChitsService],
   bootstrap: [AdminComponent]
 })
 export class AdminModule { }
