@@ -17,7 +17,7 @@ export class ChitsService {
   }
   
   joinChit(data): Observable<boolean> {
-    return this.http.post(this.serviceUrl + "savemanagementchits", data, {headers: this.headers})
+    return this.http.post(this.serviceUrl + "saveuserchits", data, {headers: this.headers})
       .map((response: Response) => {
         if(response) {
           return true;
@@ -28,7 +28,7 @@ export class ChitsService {
   }
 
   getChitData(): Observable<any> {
-    return this.http.get(this.serviceUrl + "getmanagementchits", {headers: this.headers})
+    return this.http.get(this.serviceUrl + "getuserchits", {headers: this.headers})
       .map((response: Response) => {
         let getchitgroups = response && response.json();
         if(getchitgroups && getchitgroups["data"]){
@@ -38,4 +38,17 @@ export class ChitsService {
         }
       });
   }
+
+  getPopulateChitData(): Observable<any> {
+    return this.http.get(this.serviceUrl + "getpopulateuserchits", {headers: this.headers})
+      .map((response: Response) => {
+        let populatechits = response && response.json();
+        if(populatechits && populatechits["data"]){
+          return populatechits["data"];
+        } else {
+          return false;
+        }
+      });
+  }
+
 }

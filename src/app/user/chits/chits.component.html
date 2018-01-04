@@ -15,8 +15,15 @@
 				    <tbody>
 				        <tr *ngFor="let data of chitsData; let row_no = index">
 				            <td>{{row_no + 1}}</td>
-				            <td>{{data.joinchitid}}</td>
-				            <td><span *ngIf="data.joinchitstatus == '0'">Pending</span><span *ngIf="data.joinchitstatus == '1'">Progress</span></td>
+				            <td>{{data.chit.chitvalue}}</td>
+				            <td>
+				            	<span *ngIf="data.chitstatus == false">
+				            		<a>Pay Now</a>
+				            	</span>
+				            	<span *ngIf="data.chitstatus == true">
+				            		<a>Receipt</a>
+				            	</span>
+				            </td>
 				        </tr>
 				    </tbody>
 				</table>

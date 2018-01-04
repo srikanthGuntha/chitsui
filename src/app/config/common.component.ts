@@ -8,7 +8,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 
 export class CommonComponent implements OnInit {
-	private router: Router;
 
 	constructor(){}
 
@@ -21,7 +20,8 @@ export class CommonComponent implements OnInit {
 	    	headers.set('x-access-token', currentUser.token);
 	    	return headers;
 	    } else {
-			this.router.navigate(['/login'], { queryParams: { istokeninfo: false } });
+	    	return false;
+			// this.router.navigate(['/login'], { queryParams: { istokeninfo: false } });
 	    }
 	}
 

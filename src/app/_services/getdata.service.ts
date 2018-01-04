@@ -12,7 +12,7 @@ export class GetDataService {
   }
 
   getchitgroups(): Observable<any> {
-    return this.http.get(this.serviceUrl + "getchitgroups")
+    return this.http.get(this.serviceUrl + "getpopulatechits")
       .map((response: Response) => {
         let getchitgroups = response && response.json();
         if(getchitgroups && getchitgroups["data"]){

@@ -1,34 +1,36 @@
 <section class="home-content">
-            <div class="main-content-image">
-                <div class="container">
-                    <div class="col-md-5 main-content-heading">
-                        <h3><b>Groups</b></h3>
-                        <p>Simple Hack to Increase Your Monthly Recurring Revenue</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container join-context groups-section">
-            	<table class="table table-hover">
-				    <thead>
-				        <tr>
-				            <td>S.no</td>
-				            <td>Chit Value</td>
-				            <td>Months</td>
-				            <td>Subscription</td>
-				            <td>Chit Number</td>
-				            <td>Action</td>
-				        </tr>
-				    </thead>
-				    <tbody>
-				        <tr *ngFor="let data of chitData; let row_no = index">
-				            <td>{{row_no + 1}}</td>
-				            <td>{{data.chitvalue}}</td>
-				            <td>{{data.tenure}}</td>
-				            <td>{{data.subfee}}</td>
-				            <td>{{data.chituniqid}}</td>
-				            <td><button type="button" (click)="joinChit(data.chituniqid)" class="btn btn-primary">Join Chit</button></td>
-				        </tr>
-				    </tbody>
-				</table>
-            </div>
+  <div class="main-content-image">
+    <div class="container">
+      <div class="col-md-5 main-content-heading">
+        <h3><b>Groups</b></h3>
+        <p>Simple Hack to Increase Your Monthly Recurring Revenue</p>
+      </div>
+    </div>
+  </div>
+  <div class="container join-context groups-section">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>S.no</td>
+          <td>Chit Value</td>
+          <td>Months</td>
+          <td>Subscription</td>
+          <td>Chit Number</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of chitData; let row_no = index">
+          <td>{{row_no + 1}}</td>
+          <td>{{data.chitvalue}}</td>
+          <td>{{data.tenure}}</td>
+          <td>{{data.subfee}}</td>
+          <td>{{data.chitid.chitid}}</td>
+          <td>
+            <button type="button" (click)="joinChit(data._id)" class="btn btn-primary">Join Chit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
