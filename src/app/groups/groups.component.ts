@@ -23,10 +23,10 @@ export class GroupsComponent implements OnInit {
       });
   }
 
-  private joinChit(chitId) {
+  private joinChit(userchitid) {
     this.isLoginService.isLoggedIn().then((result: any) => {
       if (result.role && result.role == 'user') {
-        this.joinChitUser({joinchitid: chitId});
+        this.joinChitUser({chit_id: userchitid});
       } else {
         this.router.navigate(['/login']);
       }
