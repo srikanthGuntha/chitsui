@@ -28,6 +28,7 @@ import { FieldErrorDisplayComponent } from './field-error-display/field-error-di
 import { UserComponent } from './user/user.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserChitsComponent } from './user/chits/chits.component';
+import { TransactionComponent } from './user/transaction/transaction.component';
 
 const appGlobalRoutes: Routes = [
   { path: '**', redirectTo: '', pathMatch: 'full' }
@@ -58,7 +59,7 @@ const appUserRoutes: Routes = [
       { path: 'howitworks', component: WorksComponent },
       { path: 'groups', component: GroupsComponent },
       { path: 'chits', component: UserChitsComponent },
-      { path: 'branches', component: UserChitsComponent }
+      { path: 'transactions', component: TransactionComponent }
       ]}
   ]}
 ];
@@ -78,7 +79,8 @@ const appUserRoutes: Routes = [
     FieldErrorDisplayComponent,
     UserComponent,
     FooterComponent,
-    UserChitsComponent
+    UserChitsComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,
