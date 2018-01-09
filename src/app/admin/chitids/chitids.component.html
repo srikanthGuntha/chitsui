@@ -7,35 +7,54 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-4">
-					<table class="table table-striped">
-					    <thead>
-					      <tr>
-					        <th>#</th>
-					        <th>Chit Id</th>
-					        <th>Branch Name</th>
-					      </tr>
-					    </thead>
-					    <tbody>
-					      <tr>
-					        <th scope="row">1</th>
-					        <td>SS003421</td>
-					        <td>Madhapur</td>
-					      </tr>
-					      <tr>
-					        <th scope="row">2</th>
-					        <td>SS003422</td>
-					        <td>Kukatpally</td>
-					      </tr>
-					      <tr>
-					        <th scope="row">3</th>
-					        <td>SS003423</td>
-					        <td>Ameerpet</td>
-					      </tr>
-					    </tbody>
+				<div class="col-lg-6">
+					<button class="btn btn-success btn-circle pull-right"
+					(click)="addChitId()"
+					title="Add Chit ID">
+					<i class="glyphicon glyphicon-plus"></i>
+					</button>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Chit Id</th>
+								<th>Branch Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let chitid of chitids;let i=index">
+								<template [ngTemplateOutlet]="loadTemplate(chitid)" [ngOutletContext]="{ $implicit: chitid, index: i }"></template>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<template #readOnlyTemplate let-chitid let-index="index">
+	<td>{{index+1}}</td>
+	<td>{{chitid.chitid}}</td>
+	<td>{{chitid.branch.branchname}}</td>
+	<td style="width: 70px;">
+		<i class="glyphicon glyphicon-edit pointer"
+		(click)="editChitId(chitid)" title="Edit"></i>
+		<i class="glyphicon glyphicon-trash pointer"
+		(click)="deleteChitIds(chitid)" title="Delete"></i>
+	</td>
+</template>
+<template #editTemplate let-chitid let-index="index">
+	<td></td>
+	<td><input type="text" [(ngModel)]="selectedChitId.chitid" /></td>
+	<td>
+		<select [(ngModel)]="selectedChitId.branch">
+			<option *ngFor="let branch of branches" [selected]="selectedChitId.branch._id === branch._id ? selected : false" value= {{branch._id}}>{{branch.branchname}}</option>
+		</select>
+	</td>
+	<td>
+		<i class="glyphicon glyphicon-ok pointer"
+			(click)="saveChitId()" title="Edit"></i>
+		<i class="glyphicon glyphicon-remove pointer"
+		(click)="cancel()" title="Delete"></i>
+	</td>
+</template>
