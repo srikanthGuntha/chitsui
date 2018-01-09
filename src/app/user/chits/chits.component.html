@@ -1,9 +1,7 @@
-<section class="home-content">
-    <div class="chits" *ngIf='!chitsData.length'>
-        <h1>No Chits to show</h1>
-    </div>
+<section class="container chits-content">
+	<div class="row chits-title"><h4>My Chits</h4></div>
     <div *ngIf='chitsData.length'>
-        <div class="container join-context groups-section">
+        <div class="row join-context groups-section">
             	<table class="table table-hover">
 				    <thead>
 				        <tr>
@@ -21,5 +19,8 @@
 				    </tbody>
 				</table>
             </div>
+    </div>
+    <div class="row chits" *ngIf='!chitsData.length'>
+        <h1>No Chits to show</h1>
     </div>
 </section>

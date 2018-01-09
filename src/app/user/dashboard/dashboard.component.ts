@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { IsLoginService } from "../../_services/login.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +8,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  public name: string = "";
+  constructor(private router: Router, private isLoginService: IsLoginService) { }
 
   ngOnInit() {
+    this.isLoginService.isLoggedIn().then((result: any) => {
+      if(result.role == 'user') {
+        this.name = result.firstname;
+      }
+    });
   }
 
   public btnClickLogout(): void {
