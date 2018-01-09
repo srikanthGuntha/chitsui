@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ChitsService } from "../../_services/getchitsdata.service";
+import { LoaderService } from '../../_services/loader.service';
 
 @Component({
   selector: 'app-transaction',
@@ -7,23 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionComponent implements OnInit {
 
-  public chitsData = [
-  			{"name": "1", "chitValue": "500000", "tenure": "30", "fee": "3000", "startDate": "Jan 2018", "status": true},
-   			{"name": "2", "chitValue": "200000", "tenure": "20", "fee": "2000", "startDate": "Feb 2018", "status": false},
-   			{"name": "3", "chitValue": "300000", "tenure": "25", "fee": "2500", "startDate": "Mar 2018", "status": true}];
+  public chitsData: any = [];
   public selectedChitId: string = "";
   public selectedChitsData: any = [];
-  constructor() { }
-
+  constructor(private chitsdataservice: ChitsService, private loaderService: LoaderService) { }
   ngOnInit() {
+    this.loaderService.display(true);
+    this.chitsdataservice.getPopulateChitData().subscribe(result => {
+        if (result.length) {
+          this.loaderService.display(false);
+          this.chitsData = result;
+        } else {
+          this.loaderService.display(false);
+          this.chitsData = [];
+        }
+      });
   }
 
   public onChangeChit(event) {
-    if (event.name) {
+    if (event.chit.chitid.chitid) {
     	let that = this;
     	this.chitsData.forEach(function(chit) {
-    		if (chit.name == event.name) {
+    		if (chit.chit.chitid.chitid == event.chit.chitid.chitid) {
     			that.selectedChitsData = [];
+          console.log(that.selectedChitsData);
     			that.selectedChitsData.push(chit);
     		}
     	});

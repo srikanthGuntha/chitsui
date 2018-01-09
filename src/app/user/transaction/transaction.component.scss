@@ -3,14 +3,14 @@
     padding-bottom: 20px;
   }
   .transaction-section {
-    padding-bottom: 70px;
+    padding: 40px;
   }
   .transaction-selectbox {
-    padding-top: 20px;
     margin-left: -30px;
   }
   .chit-details-section {
     padding-bottom: 20px;
+    margin-left: -15px;
   }
   .control-label {
     font-size: 16px;
@@ -28,3 +28,7 @@
   tbody tr td {
     border-right: 1px solid #cccccc;
   }
+  .chits-label {
+    font-weight: bold;
+  }
+  
