@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { BranchService } from './_services/branches.service';
 import { ChitsService } from './_services/chits.services';
+import { ChitIdService } from './_services/chitid.services';
 import { CommonComponent } from '../config/common.component';
 
 import { AdminComponent } from './admin.component';
@@ -40,7 +41,7 @@ const appAdminRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(appAdminRoutes)
   ],
-  providers: [BranchService,ChitsService],
+  providers: [BranchService,ChitsService,ChitIdService],
   bootstrap: [AdminComponent]
 })
 export class AdminModule { }

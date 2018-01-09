@@ -5,6 +5,7 @@ import {Chit} from '../../models/chit.model';
 import {Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { BranchService } from '../_services/branches.service';
+import { ChitIdService } from '../_services/chitid.services';
 
 import 'rxjs/Rx';
 
@@ -21,20 +22,22 @@ export class AdminChitsComponent implements OnInit {
    chit : Chit;
    chits : any;
    branches : any;
-   selemp : Chit;
+   selectedChit : Chit;
    isNewRecord : boolean;
    statusMessage:string;
-   selectedBranch:number;
+   chitids :any;
 
 
 
-  constructor(private chitsService: ChitsService,private branchService: BranchService) {
-     //this.chits = new Array < Chit > ();
+
+  constructor(private chitsService: ChitsService,private branchService: BranchService, private chitIdService: ChitIdService) {
+     this.chits = new Array < Chit > ();
   }
 
   ngOnInit() {
     this.loadChits();
     this.loadBranches();
+    this.loadChitIds();
   }
 
   private loadBranches(){
@@ -42,8 +45,15 @@ export class AdminChitsComponent implements OnInit {
       .subscribe((resp : Response) => {
         console.log(resp);
         this.branches = resp;
-        this.selectedBranch = this.branches[1];
+        //this.selectedBranch = this.branches[1];
 
+    });
+  }
+  private loadChitIds(){
+    this.chitIdService.getchitids()
+      .subscribe((resp : Response) => {
+        console.log(resp);
+        this.chitids = resp;
     });
   }
 
@@ -56,8 +66,8 @@ export class AdminChitsComponent implements OnInit {
   }
 
 
-loadTemplate(emp : Chit) {
-        if (this.selemp ) {
+loadTemplate(chit : Chit) {
+        if (this.selectedChit && this.selectedChit._id == chit._id) {
             return this.editTemplate;
         } else {
             return this.readOnlyTemplate;
@@ -67,42 +77,44 @@ loadTemplate(emp : Chit) {
     saveChit() {
         if(this.isNewRecord){
             //add a new Employee
-             this.chitsService.addChit(this.selemp).subscribe((resp : Response) => {
-
-               console.log(resp);
+             this.chitsService.addChit(this.selectedChit).subscribe((resp : Response) => {
                 this.chit = resp.json(),
                 this.statusMessage = 'Record Added Successfully.',
                  this.loadChits();
+                 this.loadBranches();
+                 this.loadChitIds();
             });
             this.isNewRecord=false;
-            this.selemp = null;
+            this.selectedChit = null;
            
         }
         else{
             //edit the record
-             this.chitsService.updateChit(this.selemp._id,this.selemp).subscribe((resp : Response) => {
+             this.chitsService.updateChit(this.selectedChit._id,this.selectedChit).subscribe((resp : Response) => {
                 this.statusMessage = 'Record Updated Successfully.',
                  this.loadChits();
+                 this.loadBranches();
+                 this.loadChitIds();
             });
-            this.selemp = null;
+            this.selectedChit = null;
             
         }
     }
     addChit(){
-       this.selemp =new Chit('1','','','',''); 
+       this.selectedChit =new Chit('','','','','',''); 
         this.chits
-            .push(this.selemp);
+            .push(this.selectedChit);
         this.isNewRecord = true;
 
     }
 
-     editEmployee(chit : Chit) {
-        this.selemp = chit;
+    editChit(chit : Chit) {
+        this.selectedChit = chit;
     }
 
 
   deleteChit(chit:Chit){
-        this.chitsService.deleteChit(chit._id).subscribe((resp : Response) => {
+        this.chitsService.deleteChit(chit).subscribe((resp : Response) => {
             this.statusMessage = 'Record Deleted Successfully.',
              this.loadChits();
         });
