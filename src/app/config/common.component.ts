@@ -18,6 +18,7 @@ export class CommonComponent implements OnInit {
 	    if( currentUser && currentUser.token ) {
 	    	let headers = new Headers();
 	    	headers.set('x-access-token', currentUser.token);
+	    	headers.set('x-access-role',currentUser.role);
 	    	return headers;
 	    } else {
 	    	return false;

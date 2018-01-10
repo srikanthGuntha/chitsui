@@ -41,7 +41,7 @@ export class AdminBranchesComponent implements OnInit {
     }
 
     addBranch(){
-       this.selectedBranch =new Branch('',''); 
+       this.selectedBranch =new Branch('','',''); 
         this.branches
             .push(this.selectedBranch);
         this.isNewRecord = true;

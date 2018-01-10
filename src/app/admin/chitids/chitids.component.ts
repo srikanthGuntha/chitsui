@@ -5,6 +5,7 @@ import {TemplateRef, ViewChild} from '@angular/core';
 import {Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {ChitId} from '../../models/chitid.model';
+import {Branch} from '../../models/branch.model';
 
 @Component({
   selector: 'app-admin-chitids',
@@ -22,6 +23,7 @@ export class AdminChitidsComponent implements OnInit {
     chitid:ChitId;
     branches:any;
 
+    branch:Branch;
     constructor(private chitIdService: ChitIdService, private branchService: BranchService) {
 
      this.chitids = new Array < ChitId > ();
@@ -37,13 +39,10 @@ private loadBranches(){
       .subscribe((resp : Response) => {
         console.log(resp);
         this.branches = resp;
-        //this.selectedBranch = this.branches[1];
-
     });
   }  
 
   loadTemplate(chitid : ChitId) {
-     console.log(this.selectedChitId);
         if (this.selectedChitId && this.selectedChitId._id == chitid._id) {
             return this.editTemplate;
         } else {
@@ -53,11 +52,10 @@ private loadBranches(){
     }
 
     addChitId(){
-       this.selectedChitId =new ChitId('','',''); 
+       this.selectedChitId =new ChitId('','',new Branch('','','')); 
         this.chitids
             .push(this.selectedChitId);
         this.isNewRecord = true;
-
     }
 
     branchSelected(){
@@ -73,6 +71,7 @@ private loadBranches(){
         this.selectedChitId = chitid;
 
         console.log(this.selectedChitId);
+        this.selectedChitId.branch.branchid = chitid.branch._id;
     }
 
     saveChitId() {

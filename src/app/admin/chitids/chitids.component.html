@@ -47,8 +47,8 @@
 	<td></td>
 	<td><input type="text" [(ngModel)]="selectedChitId.chitid" /></td>
 	<td>
-		<select [(ngModel)]="selectedChitId.branch">
-			<option *ngFor="let branch of branches" [selected]="selectedChitId.branch._id === branch._id ? selected : false" value= {{branch._id}}>{{branch.branchname}}</option>
+		<select [(ngModel)]="selectedChitId.branch.branchid">
+			<option *ngFor="let branch of branches" value= {{branch._id}}>{{branch.branchname}}</option>
 		</select>
 	</td>
 	<td>
