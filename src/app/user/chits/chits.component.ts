@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 })
 export class UserChitsComponent implements OnInit {
   public chitsData: any[] = [];
+  public showNoChitsText:string = "";
 
   constructor(private isLoginService: IsLoginService, private router: Router, private getdataservice: GetDataService, private chitsdataservice: ChitsService, private loaderService: LoaderService) { }
 
@@ -29,6 +30,7 @@ export class UserChitsComponent implements OnInit {
           this.chitsData = result;
         } else {
           this.loaderService.display(false);
+          this.showNoChitsText = "No Chits to show";
           this.chitsData = [];
         }
       });

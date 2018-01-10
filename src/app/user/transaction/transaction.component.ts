@@ -19,7 +19,12 @@ export class TransactionComponent implements OnInit {
     this.chitsdataservice.getPopulateChitData().subscribe(result => {
         if (result.length) {
           this.loaderService.display(false);
-          this.chitsData = result;
+          let that = this;
+          result.forEach(function(data){
+            if (data.chitstatus) {
+              that.chitsData.push(data);
+            }
+          });
         } else {
           this.loaderService.display(false);
           this.chitsData = [];
