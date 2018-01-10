@@ -7,22 +7,28 @@
 				    <thead>
 				        <tr>
 				            <td>S.no</td>
+				            <td>Chit Id</td>
 				            <td>Chit Value</td>
+				            <td>Sub Fee</td>
+				            <td>Tenure</td>
 				            <td>Status</td>
 				        </tr>
 				    </thead>
 				    <tbody>
 				        <tr *ngFor="let data of chitsData; let row_no = index">
 				            <td>{{row_no + 1}}</td>
+				            <td>{{data.chit.chitid.chitid}}</td>
 				            <td>{{data.chit.chitvalue}}</td>
-				            <td><span *ngIf="data.chitstatus == '0'">Pending</span><span *ngIf="data.chitstatus == '1'">Progress</span></td>
+				            <td>{{data.chit.subfee}}</td>
+				            <td>{{data.chit.tenure}}</td>
+				            <td><span *ngIf="data.chitstatus == '0'">Approval in Pending</span><span *ngIf="data.chitstatus == '1'">Approved</span></td>
 				        </tr>
 				    </tbody>
 				</table>
             </div>
     </div>
-    <div class="row chits" *ngIf='!chitsData.length'>
-        <h1>No Chits to show</h1>
+    <div class="row chits" *ngIf='showNoChitsText'>
+        <h1>{{showNoChitsText}}</h1>
     </div>
     </div>
 </section>

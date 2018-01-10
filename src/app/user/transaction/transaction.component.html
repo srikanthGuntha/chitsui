@@ -16,6 +16,9 @@
 	    	</div>
     	</div>
     </div>
+    <div class="row chits" *ngIf="showNoTransactionsText">
+    	<h1>{{showNoTransactionsText}}</h1>
+    </div>
     <div class="row transaction-selectbox">
     	<div class="col-md-6">
     		<div class="transaction-title" *ngIf="selectedChitsData.length"><h4>My Chit Details</h4></div>
