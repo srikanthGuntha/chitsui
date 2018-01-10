@@ -4,6 +4,8 @@ import { AuthenticationService } from '../_services/authentication.service';
 import { FormBuilder, FormGroup, FormsModule, FormControl, Validators , ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 
+import { MapErrorCodes } from '../config/errorcodes';
+
 @Component({
   selector: 'app-join',
   templateUrl: './join.component.html',
@@ -11,21 +13,28 @@ import { NgModule } from '@angular/core';
 })
 export class JoinComponent implements OnInit {
   registrationForm : FormGroup;
+  public alertClass: string = "error";
+  public showRegistraionMsg: string = "";
   
   public user:any = {};
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
+    constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
       name: [null, Validators.required],
-      dob: [null, Validators.required],
-      mobileNumber: [null, Validators.required],
       lname: [null, Validators.required],
       email: [null, [Validators.required]],
+      mobileNumber: [null, Validators.required],
+      password: [null, Validators.required],
+      dob: [null, Validators.required],
       address: [null, Validators.required],
-      idNumber: [null, Validators.required],
-      IdType: [null, Validators.required]
+      address2: [null],
+      city: [null, Validators.required],
+      state: [null, Validators.required],
+      pincode: [null, Validators.required],
+      IdType: [null, Validators.required],
+      idNumber: [null, Validators.required]
     });
   }
 
@@ -42,23 +51,25 @@ export class JoinComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.registrationForm);
     if (this.registrationForm.valid) {
-      console.log('form submitted');
-      console.log(this.user);
       this.authenticationService.register(this.user)
-             .subscribe(result => {
-                console.log(result);
-            });
+         .subscribe(result => {
+            if(result.success) {
+              this.alertClass = "success";
+              this.showRegistraionMsg = "Your registration was successfull. Please login now.";
+            } else {
+              let code = result.code;
+              this.alertClass = "error";
+              this.showRegistraionMsg = MapErrorCodes[code];
+            }
+        });
     } else {
       this.validateAllFormFields(this.registrationForm);
-      console.log(this.user);
     }
   }
 
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
-      console.log(field);
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
         control.markAsTouched({ onlySelf: true });
