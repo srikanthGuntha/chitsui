@@ -20,15 +20,15 @@ export class LoginComponent implements OnInit {
 	constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private loaderService: LoaderService) { }
 
 	ngOnInit() {
-		this.istokeninfo = this.activatedRoute
-			.queryParams
-			.subscribe(params => {
-				this.istokeninfo = params['istokeninfo'] || false;
-			});
+		// this.istokeninfo = this.activatedRoute
+		// 	.queryParams
+		// 	.subscribe(params => {
+		// 		this.istokeninfo = params['istokeninfo'] || false;
+		// 	});
 
-		if(!this.istokeninfo) {
-			// user is been reidrected to login because he has no token
-		}
+		// if(!this.istokeninfo) {
+		// 	// user is been reidrected to login because he has no token
+		// }
 		this.loginForm = this.formBuilder.group({
 	      username: [null, Validators.required],
 	      password: [null, Validators.required]

@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   	localStorage.removeItem('currentUser');
   	sessionStorage.clear();
     this.router.navigate(['/login']);
+    window.location.reload();
   }
 
 }
