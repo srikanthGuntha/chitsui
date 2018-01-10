@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BranchService } from './_services/branches.service';
 import { ChitsService } from './_services/chits.services';
 import { ChitIdService } from './_services/chitid.services';
+import { UserChitsService } from './_services/userchits.service';
 import { CommonComponent } from '../config/common.component';
 
 import { AdminComponent } from './admin.component';
@@ -14,6 +15,7 @@ import { AdminHeaderComponent } from './header/header.component';
 import { AdminChitsComponent } from './chits/chits.component';
 import { AdminChitidsComponent } from './chitids/chitids.component';
 import { AdminBranchesComponent } from './branches/branches.component';
+import { UserChitsComponent } from './userchits/userchits.component';
 
 const appAdminRoutes: Routes = [
   { path: '', redirectTo: 'chits' },
@@ -21,6 +23,7 @@ const appAdminRoutes: Routes = [
   { path: 'chits', component: AdminChitsComponent},
   { path: 'branches',component: AdminBranchesComponent},
   { path: 'chitids', component: AdminChitidsComponent},
+  { path: 'userchits', component: UserChitsComponent},
   { path: 'admin/**', redirectTo: 'chits', pathMatch: 'full' }
 ];
 
@@ -31,7 +34,8 @@ const appAdminRoutes: Routes = [
     AdminHeaderComponent,
 	  AdminChitsComponent,
 	  AdminBranchesComponent,
-    AdminChitidsComponent
+    AdminChitidsComponent,
+    UserChitsComponent
   ],
   imports: [
     FormsModule,
@@ -41,7 +45,7 @@ const appAdminRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(appAdminRoutes)
   ],
-  providers: [BranchService,ChitsService,ChitIdService],
+  providers: [BranchService,ChitsService,ChitIdService,UserChitsService],
   bootstrap: [AdminComponent]
 })
 export class AdminModule { }

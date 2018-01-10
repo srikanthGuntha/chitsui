@@ -23,7 +23,8 @@ export class AuthenticationService {
             localStorage.setItem('currentUser', 
               JSON.stringify({ 
                 username: loggedinuser.data.email, 
-                token: loggedinuser.data.token 
+                token: loggedinuser.data.token,
+                role:loggedinuser.data.role
               }));
             let role = loggedinuser.data.role;
             let id = loggedinuser.data._id;

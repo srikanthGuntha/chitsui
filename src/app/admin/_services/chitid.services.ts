@@ -32,13 +32,13 @@ export class ChitIdService{
             .http
             .post(this.serviceUrl+'savechitids', {
               chitid:chitId.chitid,
-              branch : chitId.branch
+              branch : chitId.branch.branchid
             }, {headers:this.headers})
    }
 
    updateChitIds(id:string,chitId : ChitId): Observable<any> {
       return this.http.put(this.serviceUrl+"updatechitids?id="+ chitId._id, {
-        branch:chitId.branch,
+        branch:chitId.branch.branchid,
         chitid:chitId.chitid
       }, {headers: this.headers})
          .map((response: Response) => {
