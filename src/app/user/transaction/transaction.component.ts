@@ -38,7 +38,7 @@ export class TransactionComponent implements OnInit {
   }
 
   public onChangeChit(event) {
-    if (event.chit.chitid.chitid) {
+    if (event !== "") {
     	let that = this;
     	this.chitsData.forEach(function(chit) {
     		if (chit.chit.chitid.chitid == event.chit.chitid.chitid) {
