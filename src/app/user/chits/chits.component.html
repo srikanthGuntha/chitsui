@@ -1,4 +1,5 @@
-<section class="container chits-content">
+<section class="container-fluid chits-content">
+	<div class="container">
 	<div class="row chits-title"><h4>My Chits</h4></div>
     <div *ngIf='chitsData.length'>
         <div class="row join-context groups-section">
@@ -22,5 +23,6 @@
     </div>
     <div class="row chits" *ngIf='!chitsData.length'>
         <h1>No Chits to show</h1>
+    </div>
     </div>
 </section>
