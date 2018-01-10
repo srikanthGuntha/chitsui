@@ -46,7 +46,7 @@ export class ChitsService {
         if(populatechits && populatechits["data"]){
           return populatechits["data"];
         } else {
-          return false;
+          return populatechits;
         }
       });
   }

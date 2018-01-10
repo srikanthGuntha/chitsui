@@ -4,6 +4,8 @@ import { AuthenticationService } from '../_services/authentication.service';
 import { LoaderService } from '../_services/loader.service';
 import { FormBuilder, FormGroup, FormsModule, FormControl, Validators , ReactiveFormsModule} from '@angular/forms';
 
+import { MapErrorCodes } from '../config/errorcodes';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,6 +15,7 @@ export class LoginComponent implements OnInit {
 	public istokeninfo: any;
 	public user:any = {};
   	loginForm : FormGroup;
+  	public showLoginMsg: string = "";
 
 	constructor(private router: Router, private activatedRoute: ActivatedRoute, private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private loaderService: LoaderService) { }
 
@@ -45,7 +48,6 @@ export class LoginComponent implements OnInit {
 
 	public validateAllFormFields(formGroup: FormGroup) {
 	    Object.keys(formGroup.controls).forEach(field => {
-	      console.log(field);
 	      const control = formGroup.get(field);
 	      if (control instanceof FormControl) {
 	        control.markAsTouched({ onlySelf: true });
@@ -59,18 +61,37 @@ export class LoginComponent implements OnInit {
 		this.loaderService.display(true);
 		if (this.loginForm.valid) {
 			this.authenticationService.login(this.user.username, this.user.password)
-			.subscribe(result => {
-					this.loaderService.display(false);
+			.subscribe(loggedinuser => {
+				this.loaderService.display(false);
+
+				if(loggedinuser.success) {
+					let id = loggedinuser.data._id;
+					let email = loggedinuser.data.email;
+		            let role = loggedinuser.data.role;
+		            let token = loggedinuser.data.token;
+		            let fullname = loggedinuser.data.firstname + " " + loggedinuser.data.lastname;
+
+		            localStorage.setItem('currentUser', 
+		              JSON.stringify({ 
+		                username: email, 
+		                token: token,
+		                role: role
+		              }));
+
 					if (typeof (Storage) !== undefined ) {
-						sessionStorage.setItem('role', result.role);
-						sessionStorage.setItem('id', result.id);
+						sessionStorage.setItem('role', role);
+						sessionStorage.setItem('id', id);
 					}
-					if (result.role === "user") {
-						sessionStorage.setItem('firstname', this.user.username);
+					if (role === "user") {
+						sessionStorage.setItem('firstname', fullname);
 						this.router.navigate(['/user']);
-					} else if(result.role === "admin") {
+					} else if(role === "admin") {
 						this.router.navigate(['/admin']);
 					}
+				} else {
+					let code = loggedinuser.code;
+					this.showLoginMsg = MapErrorCodes[code];
+				}
 			});
 		} else {
 			this.validateAllFormFields(this.loginForm);

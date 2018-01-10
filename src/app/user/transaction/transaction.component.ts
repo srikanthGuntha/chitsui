@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChitsService } from "../../_services/getchitsdata.service";
 import { LoaderService } from '../../_services/loader.service';
+import { AuthenticationService } from '../../_services/authentication.service';
 
 @Component({
   selector: 'app-transaction',
@@ -12,7 +13,7 @@ export class TransactionComponent implements OnInit {
   public chitsData: any = [];
   public selectedChitId: string = "";
   public selectedChitsData: any = [];
-  constructor(private chitsdataservice: ChitsService, private loaderService: LoaderService) { }
+  constructor(private authService: AuthenticationService,private chitsdataservice: ChitsService, private loaderService: LoaderService) { }
   ngOnInit() {
     this.loaderService.display(true);
     this.chitsdataservice.getPopulateChitData().subscribe(result => {
@@ -32,7 +33,6 @@ export class TransactionComponent implements OnInit {
     	this.chitsData.forEach(function(chit) {
     		if (chit.chit.chitid.chitid == event.chit.chitid.chitid) {
     			that.selectedChitsData = [];
-          console.log(that.selectedChitsData);
     			that.selectedChitsData.push(chit);
     		}
     	});
