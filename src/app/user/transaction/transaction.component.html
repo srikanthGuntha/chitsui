@@ -42,10 +42,10 @@
 					    <tr *ngFor="let data of selectedChitsData">
 					        <td>{{data.chit.chitstartdate}}</td>
 					        <td>
-					           	<span *ngIf="data.chitstatus == true">
+					           	<span *ngIf="data.paystatus == true">
 					            	<a>Receipt</a>
 					            </span>
-					            <span *ngIf="data.chitstatus == false">
+					            <span *ngIf="data.paystatus == false">
 					            	<a>Pay Now</a>
 					            </span>
 					        </td>
