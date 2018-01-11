@@ -5,13 +5,15 @@ import { CommonComponent } from '../config/common.component';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
+import { CommonService } from './common.service';
+
 @Injectable()
 export class ChitsService {
   public serviceUrl: string = globals.dbhosturl + "api/v1/";
   public headers: any;
   public commonComponent: CommonComponent
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private commonService: CommonService) {
     this.commonComponent = new CommonComponent();
     this.headers = this.commonComponent.getRequestHeaders();
   }
@@ -42,12 +44,8 @@ export class ChitsService {
   getPopulateChitData(): Observable<any> {
     return this.http.get(this.serviceUrl + "getpopulateuserchits", {headers: this.headers})
       .map((response: Response) => {
-        let populatechits = response && response.json();
-        if(populatechits && populatechits["data"]){
-          return populatechits["data"];
-        } else {
-          return populatechits;
-        }
+        this.commonService.isSessionExpired(response);
+        return response && response.json();
       });
   }
 
