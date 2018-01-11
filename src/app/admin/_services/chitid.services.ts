@@ -19,7 +19,7 @@ export class ChitIdService{
   }
 
    getchitids(): Observable<any> {
-      return this.http.get(this.serviceUrl+ "getpopulate", {headers: this.headers})
+      return this.http.get(this.serviceUrl+ "getpopulatechitids", {headers: this.headers})
       .map((response: Response) => {
         console.log(response);
          response = response.json();

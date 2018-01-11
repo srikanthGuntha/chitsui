@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../_services/authentication.service';
+import { GetDataService } from '../_services/getdata.service';
 
 import { FormBuilder, FormGroup, FormsModule, FormControl, Validators , ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -17,13 +17,13 @@ export class ContactComponent implements OnInit {
   public showContactMsg: string = "";
 
   public user:any = {};
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
+  constructor(private formBuilder: FormBuilder, private getdataservice: GetDataService) {
   }
 
   ngOnInit() {
     this.contactForm = this.formBuilder.group({
-      name: [null, Validators.required],
-      mobileNumber: [null, Validators.required],
+      fullname: [null, Validators.required],
+      mobile: [null, Validators.required],
       comments: [null, Validators.required]
     });
   }
@@ -41,29 +41,31 @@ export class ContactComponent implements OnInit {
 
   submitForm() {
     if (this.contactForm.valid) {
-      // this.authenticationService.register(this.user)
-      //    .subscribe(result => {
-      //       if(result.success) {
-      //         this.alertClass = "success";
-      //         this.showContactMsg = "Your registration was successfull. Please login now.";
-      //       } else {
-      //         let code = result.code;
-      //         this.alertClass = "error";
-      //         this.showContactMsg = MapErrorCodes[code];
-      //       }
-      //   });
+      this.getdataservice.savecontactinfo(this.user)
+         .subscribe(result => {
+             console.log(result);
+            if(result.success) {
+              this.alertClass = "success";
+              this.showContactMsg = "Your query saved successfully. Will be touch with you shortly. Thank you!!";
+            } else {
+              let code = result.code;
+              this.alertClass = "error";
+              this.showContactMsg = MapErrorCodes[code];
+            }
+        });
     } else {
-      this.validateAllFormFields(this.contactForm);
+      this.validateAllFormFields(true, this.contactForm);
     }
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
+  validateAllFormFields(flag, formGroup: FormGroup) {
+    if(!flag) return false;
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
         control.markAsTouched({ onlySelf: true });
       } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
+        this.validateAllFormFields(true, control);
       }
     });
   }

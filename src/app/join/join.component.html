@@ -56,9 +56,9 @@
                         </div>
                       </div>
                   <div class="form-group" [ngClass]="displayFieldCss('mobileNumber')">
-                      <label class="control-label required col-sm-3" for="mobileNumber">Mobile Number:</label>
+                      <label class="control-label required col-sm-3" for="mobileNumber">Mobile:</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" placeHolder="Mobile" name="mobileNumber" [(ngModel)]="user.mobileNumber" formControlName="mobileNumber">
+                        <input type="text" class="form-control" placeHolder="Mobile" name="mobileNumber" [(ngModel)]="user.mobileNumber" OnlyNumber="true" formControlName="mobileNumber">
                         <app-field-error-display 
                         [displayError]="isFieldValid('mobileNumber')" 
                         errorMsg="Please inform your mobile number">
@@ -130,7 +130,7 @@
                         <div [ngClass]="displayFieldCss('pincode')">
                           <label class="control-label required col-sm-3" for="pincode">Pincode:</label>
                           <div class="col-sm-9">
-                            <input class="form-control" type="text" placeholder="Pincode" name="pincode" [(ngModel)]="user.pincode" formControlName="pincode">
+                            <input class="form-control" type="text" placeholder="Pincode" name="pincode" [(ngModel)]="user.pincode" OnlyNumber="true" formControlName="pincode">
                             <app-field-error-display 
                               [displayError]="isFieldValid('pincode')" 
                               errorMsg="Please inform your pincode">

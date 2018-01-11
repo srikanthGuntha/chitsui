@@ -18,13 +18,13 @@
                  </div>
             </div>
         	<form class="form-horizontal" (ngSubmit)="submitForm()" [formGroup]="contactForm">
-			  <div class="form-group" [ngClass]="displayFieldCss('name')">
-			    <label class="control-label col-sm-3" for="name">Name:</label>
+			  <div class="form-group" [ngClass]="displayFieldCss('fullname')">
+			    <label class="control-label col-sm-3" for="fullname">Name:</label>
 			    <div class="col-sm-9">
-			      <input type="text" class="form-control" id="name" [(ngModel)]="user.firstName" formControlName="name">
+			      <input type="text" class="form-control" id="fullname" [(ngModel)]="user.fullname" formControlName="fullname">
                 <app-field-error-display 
-                          [displayError]="isFieldValid('name')" 
-                          errorMsg="Please inform your first name">
+                          [displayError]="isFieldValid('fullname')" 
+                          errorMsg="Please inform your name">
                         </app-field-error-display>
 			    </div>
 			  </div>
@@ -34,12 +34,13 @@
 			      <input type="email" class="form-control" id="email">
 			    </div>
 			  </div>
-			  <div class="form-group" [ngClass]="displayFieldCss('mobileNumber')">
-			    <label class="control-label col-sm-3" for="mobileNumber">Phone:</label>
+			  <div class="form-group" [ngClass]="displayFieldCss('mobile')">
+			    <label class="control-label col-sm-3" for="mobile">Mobile:</label>
 			    <div class="col-sm-9"> 
-			      <input type="text" class="form-control" id="mobileNumber" [(ngModel)]="user.mobileNumber" formControlName="mobileNumber">
+			      <input type="text" class="form-control" id="mobile" [(ngModel)]="user.mobile" formControlName="mobile"
+                    OnlyNumber="true">
                   <app-field-error-display 
-                        [displayError]="isFieldValid('mobileNumber')" 
+                        [displayError]="isFieldValid('mobile')" 
                         errorMsg="Please inform your mobile number">
                     </app-field-error-display>
 			    </div>
