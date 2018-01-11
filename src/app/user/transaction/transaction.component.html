@@ -22,11 +22,12 @@
     <div class="row transaction-selectbox">
     	<div class="col-md-6">
     		<div class="transaction-title" *ngIf="selectedChitsData.length"><h4>My Chit Details</h4></div>
-	    	<div class="chit-details-section" *ngFor="let data1 of selectedChitsData">
+	    	<div class="chit-details-section" id="chit-details-section" *ngFor="let data1 of selectedChitsData">
 	    	<p><span class="chits-label col-sm-3">Chit Value:</span>{{data1.chit.chitvalue}}</p>
 	    	<p><span class="chits-label col-sm-3">Tenure:</span>{{data1.chit.tenure}}</p>
 	    	<p><span class="chits-label col-sm-3">Sub Fee:</span>{{data1.chit.subfee}}</p>
 	    	<p><span class="chits-label col-sm-3">Start Date:</span>{{data1.chit.chitstartdate}}</p>
+	    	<p><span class="chits-label col-sm-3">Pay Status:</span>{{data1.paystatus===true ? "Paid" : "Not Paid"}}</p>
 	    	</div>
     	</div>
     	<div class="chit-status-section col-md-6" *ngIf="selectedChitsData.length">
@@ -43,7 +44,7 @@
 					        <td>{{data.chit.chitstartdate}}</td>
 					        <td>
 					           	<span *ngIf="data.paystatus == true">
-					            	<a>Receipt</a>
+					            	<a (click)="printReceipt()">Receipt</a>
 					            </span>
 					            <span *ngIf="data.paystatus == false">
 					            	<a>Pay Now</a>
