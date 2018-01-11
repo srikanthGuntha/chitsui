@@ -39,4 +39,18 @@ export class AuthenticationService {
     alert("You session has expired. Re-directing to Login page.");
     this.logout();
   }
+
+  isMobileExisting(data): Observable<any> {
+    return this.http.post(this.serviceUrl + "ismobileexists", data)
+      .map((response: Response) => {
+        return response && response.json();
+    });
+  }
+
+  isEmailExisting(data): Observable<any> {
+    return this.http.post(this.serviceUrl + "isemailexists", data)
+      .map((response: Response) => {
+        return response && response.json();
+    });
+  }
 }

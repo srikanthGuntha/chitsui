@@ -84,6 +84,18 @@ export class LoginComponent implements OnInit {
 					}
 					if (role === "user") {
 						sessionStorage.setItem('firstname', fullname);
+						sessionStorage.setItem('name', loggedinuser.data.firstname);
+						sessionStorage.setItem('lname', loggedinuser.data.lastname);
+						sessionStorage.setItem('email', loggedinuser.data.email);
+						sessionStorage.setItem('mobileNumber', loggedinuser.data.mobile);
+						sessionStorage.setItem('dob', loggedinuser.data.dob);
+						sessionStorage.setItem('address', loggedinuser.data.address1);
+						sessionStorage.setItem('address2', loggedinuser.data.address2);
+						sessionStorage.setItem('city', loggedinuser.data.city);
+						sessionStorage.setItem('state', loggedinuser.data.state);
+						sessionStorage.setItem('pincode', loggedinuser.data.pincode);
+						sessionStorage.setItem('IdType', loggedinuser.data.idtype);
+						sessionStorage.setItem('idNumber', loggedinuser.data.idnumber);
 						this.router.navigate(['/user']);
 					} else if(role === "admin") {
 						this.router.navigate(['/admin']);
