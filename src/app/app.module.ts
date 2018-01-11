@@ -10,6 +10,8 @@ import { GetDataService } from './_services/getdata.service';
 import { IsLoginService } from './_services/login.service';
 import { ChitsService } from './_services/getchitsdata.service';
 import { LoaderService } from './_services/loader.service';
+import { CommonService } from './_services/common.service';
+
 
 // non auth components
 import { AppComponent } from './app.component';
@@ -111,7 +113,7 @@ const appUserRoutes: Routes = [
 
     )
   ],
-  providers: [AuthenticationService, GetDataService, IsLoginService, ChitsService, LoaderService],
+  providers: [AuthenticationService, GetDataService, IsLoginService, ChitsService, LoaderService, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

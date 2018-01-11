@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChitsService } from "../../_services/getchitsdata.service";
 import { LoaderService } from '../../_services/loader.service';
 import { AuthenticationService } from '../../_services/authentication.service';
+import { MapErrorCodes } from '../../config/errorcodes';
 
 @Component({
   selector: 'app-transaction',
@@ -18,21 +19,22 @@ export class TransactionComponent implements OnInit {
   ngOnInit() {
     this.loaderService.display(true);
     this.chitsdataservice.getPopulateChitData().subscribe(result => {
-        if (result.length) {
+        if (result.success) {
           this.loaderService.display(false);
           let that = this;
-          result.forEach(function(data){
+          result.data.forEach(function(data){
             if (data.chitstatus) {
               that.chitsData.push(data);
             }
           });
           if (!this.chitsData.length) {
-            this.showNoTransactionsText = "All Your Chits are in Progress.";
+            this.showNoTransactionsText = "You have no active chits currently.";
           }
         } else {
+          var code = result.code;
           this.loaderService.display(false);
           this.chitsData = [];
-          this.showNoTransactionsText = "Error in fetching your chits data.";
+          this.showNoTransactionsText = MapErrorCodes[code] || "Error in fetching your chits data, try again after sometime.";
         }
       });
   }
