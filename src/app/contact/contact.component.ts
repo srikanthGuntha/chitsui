@@ -24,7 +24,8 @@ export class ContactComponent implements OnInit {
     this.contactForm = this.formBuilder.group({
       fullname: [null, Validators.required],
       mobile: [null, Validators.required],
-      comments: [null, Validators.required]
+      comments: [null, Validators.required],
+      email: [null, null]
     });
   }
 
@@ -43,10 +44,11 @@ export class ContactComponent implements OnInit {
     if (this.contactForm.valid) {
       this.getdataservice.savecontactinfo(this.user)
          .subscribe(result => {
-             console.log(result);
             if(result.success) {
               this.alertClass = "success";
               this.showContactMsg = "Your query saved successfully. Will be touch with you shortly. Thank you!!";
+              this.user = {};
+              this.resetForm(this.contactForm);
             } else {
               let code = result.code;
               this.alertClass = "error";
@@ -68,6 +70,18 @@ export class ContactComponent implements OnInit {
         this.validateAllFormFields(true, control);
       }
     });
+  }
+
+  resetForm(formGroup: FormGroup) {
+    let control = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+	Object.keys(formGroup.controls).forEach((name) => {
+      if (control instanceof FormControl) {
+	      control = formGroup.controls[name];
+	      control.setErrors(null);
+	  }
+	});
   }
 
 }
