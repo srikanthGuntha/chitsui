@@ -57,6 +57,8 @@ export class JoinComponent implements OnInit {
             if(result.success) {
               this.alertClass = "success";
               this.showRegistraionMsg = "Your registration was successfull. Please login now.";
+              this.user = {};
+              this.resetForm(this.registrationForm);
             } else {
               let code = result.code;
               this.alertClass = "error";
@@ -75,6 +77,18 @@ export class JoinComponent implements OnInit {
         control.markAsTouched({ onlySelf: true });
       } else if (control instanceof FormGroup) {
         this.validateAllFormFields(control);
+      }
+    });
+  }
+
+  resetForm(formGroup: FormGroup) {
+    let control = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+      Object.keys(formGroup.controls).forEach((name) => {
+        if (control instanceof FormControl) {
+          control = formGroup.controls[name];
+          control.setErrors(null);
       }
     });
   }
