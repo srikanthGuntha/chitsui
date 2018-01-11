@@ -23,4 +23,11 @@ export class GetDataService {
       });
   }
 
+  savecontactinfo(contact): Observable<any> {
+    return this.http.post(this.serviceUrl + "savecontactinfo", contact)
+      .map((response: Response) => {
+        return response && response.json();
+      });
+  }
+
 }

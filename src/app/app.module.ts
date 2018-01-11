@@ -30,6 +30,8 @@ import { FooterComponent } from './footer/footer.component';
 import { UserChitsComponent } from './user/chits/chits.component';
 import { TransactionComponent } from './user/transaction/transaction.component';
 
+import { OnlyNumber } from './_directives/onlynumber.directive';
+
 const appGlobalRoutes: Routes = [
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
@@ -80,7 +82,8 @@ const appUserRoutes: Routes = [
     UserComponent,
     FooterComponent,
     UserChitsComponent,
-    TransactionComponent
+    TransactionComponent,
+    OnlyNumber
   ],
   imports: [
     BrowserModule,
