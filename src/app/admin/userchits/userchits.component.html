@@ -32,7 +32,7 @@
   <template #readOnlyTemplate let-userchit let-index="index">
     <td>{{index+1}}</td>
     <td>{{userchit.userid.firstname +' '+ userchit.userid.lastname}}</td>
-    <td>{{userchit.chit.chitid}}</td>
+    <td>{{userchit.chit.chitid.chitid}}</td>
     <td>{{userchit.chit.activemembers}}</td>
     <td>{{userchit.chit.tenure}}</td>
     <td>{{userchit.chitstatus}}</td>
@@ -44,7 +44,7 @@
   <template #editTemplate let-userchit let-index="index">
       <td>{{index+1}}</td>
       <td>{{userchit.userid.firstname +' '+ userchit.userid.lastname}}</td>
-      <td>{{userchit.chit.chitid}}</td>
+      <td>{{userchit.chit.chitid.chitid}}</td>
       <td>{{userchit.chit.activemembers}}</td>
       <td>{{userchit.chit.tenure}}</td>
       <td>
@@ -54,9 +54,13 @@
        </select>
       </td>
       <td>
-        <input type="button" value="Save" (click)="updateUserChit()" class="btn btn-success" />
+        <i class="glyphicon glyphicon-ok pointer"
+      (click)="updateUserChit()" title="Edit"></i>
+      <i class="glyphicon glyphicon-remove pointer"
+      (click)="cancel()" title="Delete"></i>
+        <!-- <input type="button" value="Save" (click)="updateUserChit()" class="btn btn-success" /> -->
       </td>
       <td>
-        <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+        <!-- <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" /> -->
       </td>
   </template>

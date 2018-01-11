@@ -37,6 +37,23 @@ export class TransactionComponent implements OnInit {
       });
   }
 
+  printReceipt(){
+    let printContents, popupWin;
+    printContents = document.getElementById('chit-details-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Receipt</title>
+          <style></style>
+        </head>
+        <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+  }
+
   public onChangeChit(event) {
     if (event !== "") {
     	let that = this;
