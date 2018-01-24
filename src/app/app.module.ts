@@ -60,8 +60,8 @@ const appUserRoutes: Routes = [
       { path: '', component: UserChitsComponent },
       { path: '', component: DashboardComponent, outlet:'header' },
       { path: '', component: FooterComponent, outlet:'footer' },
-      { path: 'howitworks', component: WorksComponent },
-      { path: 'groups', component: GroupsComponent },
+      { path: 'howitwork', component: WorksComponent },
+      { path: 'group', component: GroupsComponent },
       { path: 'chits', component: UserChitsComponent },
       { path: 'transactions', component: TransactionComponent }
       ]}

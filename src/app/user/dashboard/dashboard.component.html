@@ -18,6 +18,7 @@
    <div class="col-md-2"></div>
    <div class="container-fluid col-md-9">
       <div class="navbar-header">
+         <span class="user-name-mobile hidden-md hidden-lg">Welcome {{name}}</span>
          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
@@ -28,11 +29,11 @@
       <ul class="nav navbar-nav">
          <li><a [routerLink]="['chits']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">My Chits</a></li>
          <li><a [routerLink]="['transactions']" routerLinkActive="active">My Transaction</a></li>
-         <li><a [routerLink]="['groups']" routerLinkActive="active">Groups</a></li>
-         <li><a [routerLink]="['howitworks']" routerLinkActive="active">How it Work's</a></li>
+         <li><a [routerLink]="['group']" routerLinkActive="active">Groups</a></li>
+         <li><a [routerLink]="['howitwork']" routerLinkActive="active">How it Work's</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	<li><a>Welcome {{name}}</a></li>
+      	<li class="hidden-xs hidden-sm"><a>Welcome {{name}}</a></li>
         <li><a (click)="btnClickLogout()" routerLink ="/login" routerLinkActive="active">Logout</a></li>
       </ul>
     </div>
