@@ -31,6 +31,7 @@ import { UserComponent } from './user/user.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserChitsComponent } from './user/chits/chits.component';
 import { TransactionComponent } from './user/transaction/transaction.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 import { OnlyNumber } from './_directives/onlynumber.directive';
 
@@ -63,7 +64,8 @@ const appUserRoutes: Routes = [
       { path: 'howitworks', component: WorksComponent },
       { path: 'groups', component: GroupsComponent },
       { path: 'chits', component: UserChitsComponent },
-      { path: 'transactions', component: TransactionComponent }
+      { path: 'transactions', component: TransactionComponent },
+      { path: 'profile', component: ProfileComponent }
       ]}
   ]}
 ];
@@ -85,6 +87,7 @@ const appUserRoutes: Routes = [
     FooterComponent,
     UserChitsComponent,
     TransactionComponent,
+    ProfileComponent,
     OnlyNumber
   ],
   imports: [
