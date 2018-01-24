@@ -32,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UserChitsComponent } from './user/chits/chits.component';
 import { TransactionComponent } from './user/transaction/transaction.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { GroupComponent } from './user/group/group.component';
 
 import { OnlyNumber } from './_directives/onlynumber.directive';
 
@@ -62,7 +63,7 @@ const appUserRoutes: Routes = [
       { path: '', component: DashboardComponent, outlet:'header' },
       { path: '', component: FooterComponent, outlet:'footer' },
       { path: 'howitwork', component: WorksComponent },
-      { path: 'group', component: GroupsComponent },
+      { path: 'group', component: GroupComponent },
       { path: 'chits', component: UserChitsComponent },
       { path: 'transactions', component: TransactionComponent },
       { path: 'profile', component: ProfileComponent }
@@ -88,7 +89,8 @@ const appUserRoutes: Routes = [
     UserChitsComponent,
     TransactionComponent,
     ProfileComponent,
-    OnlyNumber
+    OnlyNumber,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

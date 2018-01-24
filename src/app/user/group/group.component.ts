@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { GetDataService } from '../_services/getdata.service';
-import { IsLoginService } from "../_services/login.service";
-import { ChitsService } from "../_services/getchitsdata.service";
+import { GetDataService } from '../../_services/getdata.service';
+import { IsLoginService } from '../../_services/login.service';
+import { ChitsService } from '../../_services/getchitsdata.service';
 import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-groups',
-  templateUrl: './groups.component.html',
-  styleUrls: ['./groups.component.scss']
+  selector: 'app-group',
+  templateUrl: './group.component.html',
+  styleUrls: ['./group.component.scss']
 })
+export class GroupComponent implements OnInit {
 
-export class GroupsComponent implements OnInit {
   public chitgroups: any[];
 	public chitData:any[];
 
   constructor(private getdataservice: GetDataService, private isLoginService: IsLoginService, private router: Router, private chitsDataService: ChitsService) { }
 
   ngOnInit() {
+    this.isLoginService.isLoggedIn().then((result: any) => {
+      if(result.role !== 'user') {
+        this.router.navigate(['/groups']);
+      }
+    });
+    
     this.getdataservice.getchitgroups()
       .subscribe(result => {
         this.chitData = result;
@@ -39,4 +45,5 @@ export class GroupsComponent implements OnInit {
           this.router.navigate(['/user']);
         });
   }
+
 }
