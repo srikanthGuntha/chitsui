@@ -50,6 +50,26 @@ export class JoinComponent implements OnInit {
     };
   }
 
+  ifEmailExists(data: string) {
+    this.authenticationService.isEmailExisting(data)
+    .subscribe(result => {
+            if(result.code == "200201") {
+              this.alertClass = "error";
+              this.showRegistraionMsg = "Email already exists. Please login now.";
+            }
+        });
+  }
+
+  ifMobileExists(data: string) {
+    this.authenticationService.isMobileExisting(data)
+    .subscribe(result => {
+            if(result.code == "200201") {
+              this.alertClass = "error";
+              this.showRegistraionMsg = "Mobile number already exists. Please login now.";
+            }
+        });
+  }
+
   submitForm() {
     if (this.registrationForm.valid) {
       this.authenticationService.register(this.user)
