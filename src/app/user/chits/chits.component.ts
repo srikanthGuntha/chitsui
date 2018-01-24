@@ -20,11 +20,11 @@ export class UserChitsComponent implements OnInit {
 
   ngOnInit() {
     this.loaderService.display(true);
-  	// this.isLoginService.isLoggedIn().then((result: any) => {
-  	// 	if(result.role !== 'user') {
-  	// 		this.router.navigate(['/login']);
-  	// 	}
-  	// });
+  	this.isLoginService.isLoggedIn().then((result: any) => {
+  		if(result.role !== 'user') {
+  			this.router.navigate(['/login']);
+  		}
+  	});
 
     this.chitsdataservice.getPopulateChitData().subscribe(result => {
       if (result.success) {

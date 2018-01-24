@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ChitsService } from "../../_services/getchitsdata.service";
+import { ChitsService } from '../../_services/getchitsdata.service';
 import { LoaderService } from '../../_services/loader.service';
 import { AuthenticationService } from '../../_services/authentication.service';
+import { IsLoginService } from '../../_services/login.service';
 import { MapErrorCodes } from '../../config/errorcodes';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-transaction',
@@ -15,9 +17,14 @@ export class TransactionComponent implements OnInit {
   public selectedChitId: string = "";
   public showNoTransactionsText: string = "";
   public selectedChitsData: any = [];
-  constructor(private authService: AuthenticationService,private chitsdataservice: ChitsService, private loaderService: LoaderService) { }
+  constructor(private isLoginService: IsLoginService, private router: Router, private authService: AuthenticationService,private chitsdataservice: ChitsService, private loaderService: LoaderService) { }
   ngOnInit() {
     this.loaderService.display(true);
+    this.isLoginService.isLoggedIn().then((result: any) => {
+      if(result.role !== 'user') {
+        this.router.navigate(['/login']);
+      }
+    });
     this.chitsdataservice.getPopulateChitData().subscribe(result => {
         if (result.success) {
           this.loaderService.display(false);

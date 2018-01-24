@@ -17,6 +17,12 @@ export class GroupsComponent implements OnInit {
   constructor(private getdataservice:GetDataService, private isLoginService: IsLoginService, private router: Router, private chitsDataService: ChitsService) { }
 
   ngOnInit() {
+    this.isLoginService.isLoggedIn().then((result: any) => {
+      if(result.role !== 'user') {
+        this.router.navigate(['/groups']);
+      }
+    });
+    
     this.getdataservice.getchitgroups()
       .subscribe(result => {
         this.chitData = result;
