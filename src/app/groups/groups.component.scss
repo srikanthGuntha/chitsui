@@ -1,3 +1,6 @@
+  .home-content {
+
+  }
   .main-content-heading {
     color: white;
     padding-top: 150px;
@@ -12,20 +15,24 @@
   .join-context {
     border: 1px solid #ccc;
     border-radius: 45px;
-    margin-top: -60px;
+    margin-top: 20px;
     background: white;
     margin-bottom: 100px;
   }
-  table {
-    border: 1px solid #cccccc;
-    display: inline-table;
-    margin-top: -15px;
-  }
+  // table {
+  //   border: 1px solid #cccccc;
+  //   display: inline-table;
+  //   //margin-top: -15px;
+  // }
   thead {
     background-color: #FF4537;
     color: white;
   }
-  tbody tr td {
-    border-right: 1px solid #cccccc;
-  }
+  // tbody tr td {
+  //   border-right: 1px solid #cccccc;
+  // }
   
+  .algin-items {
+    margin-top: 20px;
+    margin-bottom: 13px;
+  }

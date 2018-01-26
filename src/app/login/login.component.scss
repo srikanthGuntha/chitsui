@@ -1,3 +1,11 @@
+  .home-content {
+    padding: 10px;
+  }
+
+.login-layout {
+      border-right: 1px solid #e2e2e2;
+}
+
   .main-content-heading {
     color: white;
     padding-top: 150px;
@@ -13,17 +21,15 @@
     width: 875px;
     border: 1px solid #ccc;
     border-radius: 30px;
-    margin-top: -60px;
+    margin-top: 20px;
     background: white;
-    padding: 35px;
+    padding: 0px 35px 35px 35px;
     margin-bottom: 100px;
   }
   .login-title {
     color: #FF4537;
     font-weight: bold;
-    padding-left: 30px;
-    margin-top: -25px;
-    padding-bottom: 20px;
+    text-align: center;
   }
   .login-btns {
     background-color: #3890e5;
@@ -44,6 +50,13 @@
     font-size: 12px;
   }
   .form-group {
-    padding-bottom: 60px;
+    // padding-bottom: 60px;
   }
   
+  .align-controls {
+    margin-bottom: 13px;
+  }
+
+  .align-center {
+    text-align: center;
+  }

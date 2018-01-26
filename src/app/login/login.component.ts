@@ -102,6 +102,7 @@ export class LoginComponent implements OnInit {
 					}
 				} else {
 					let code = loggedinuser.code;
+					console.log(code);
 					this.showLoginMsg = MapErrorCodes[code];
 				}
 			});
