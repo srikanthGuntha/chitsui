@@ -28,7 +28,7 @@
             </div>
     </div>
     <div class="row chits" *ngIf='showNoChitsText'>
-        <h1>{{showNoChitsText}}</h1>
+        <h1>{{showNoChitsText}}<a [routerLink]="['/user/group']" *ngIf="noActiveShits">Groups</a></h1>
     </div>
     </div>
 </section>

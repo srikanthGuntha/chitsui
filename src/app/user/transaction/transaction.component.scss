@@ -1,6 +1,8 @@
   .transaction-title {
     color: #FF4537;
-    padding-bottom: 20px;
+    background: #edeaea;
+    text-align: center;
+    margin-bottom: 20px;
   }
   .transaction-section {
     padding: 40px;
@@ -16,6 +18,7 @@
     background: white;
     min-height: 450px;
     padding: 40px;
+    border-radius: 15px;
   }
   .chit-details-section {
     padding-bottom: 20px;
@@ -44,6 +47,9 @@
     text-align: center;
     padding: 50px;
     color: red;
+    a {
+      text-decoration: underline;
+    }
   }
   
 
