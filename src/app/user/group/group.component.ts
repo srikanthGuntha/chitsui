@@ -29,7 +29,7 @@ export class GroupComponent implements OnInit {
       });
   }
 
-  private joinChit(userchitid) {
+  public joinChit(userchitid) {
     this.isLoginService.isLoggedIn().then((result: any) => {
       if (result.role && result.role == 'user') {
         this.joinChitUser({chit_id: userchitid});
