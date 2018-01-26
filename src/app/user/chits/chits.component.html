@@ -1,34 +1,43 @@
 <section class="container-fluid chits-content">
 	<div class="container">
-	<div class="row chits-title"><h4>My Chits</h4></div>
-    <div *ngIf='chitsData.length'>
-        <div class="row join-context groups-section">
-            	<table class="table table-hover">
-				    <thead>
-				        <tr>
-				            <td>S.no</td>
-				            <td>Chit Id</td>
-				            <td>Chit Value</td>
-				            <td>Sub Fee</td>
-				            <td>Tenure</td>
-				            <td>Status</td>
-				        </tr>
-				    </thead>
-				    <tbody>
-				        <tr *ngFor="let data of chitsData; let row_no = index">
-				            <td>{{row_no + 1}}</td>
-				            <td>{{data.chit.chitid.chitid}}</td>
-				            <td>{{data.chit.chitvalue}}</td>
-				            <td>{{data.chit.subfee}}</td>
-				            <td>{{data.chit.tenure}}</td>
-				            <td><span *ngIf="data.chitstatus == '0'">Approval in Pending</span><span *ngIf="data.chitstatus == '1'">Approved</span></td>
-				        </tr>
-				    </tbody>
-				</table>
-            </div>
-    </div>
-    <div class="row chits" *ngIf='showNoChitsText'>
-        <h1>{{showNoChitsText}}<a [routerLink]="['/user/group']" *ngIf="noActiveShits">Groups</a></h1>
-    </div>
-    </div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="row chits-title"><h4>My Chits</h4></div>
+			</div>
+			<div class="col-lg-12">
+				<div *ngIf='chitsData.length'>
+					<div class="">
+						<table class="table table-bordered">
+							<thead>
+					            <tr>
+					              <th scope="col">S.no</th>
+					              <th scope="col">Chit Id</th>
+					              <th scope="col">Chit Value</th>
+					              <th scope="col">Sub Fee</th>
+					              <th scope="col">Tenure</th>
+					              <th scope="col">Status</th>
+					            </tr>
+					          </thead>
+					          <tbody>
+					            <tr *ngFor="let data of chitsData; let row_no = index">
+					              	<th scope="row">{{row_no + 1}}</th>
+					              	<td>{{data.chit.chitid.chitid}}</td>
+						            <td>{{data.chit.chitvalue}}</td>
+						            <td>{{data.chit.subfee}}</td>
+						            <td>{{data.chit.tenure}}</td>
+						            <td><span *ngIf="data.chitstatus == '0'">Approval in Pending</span><span *ngIf="data.chitstatus == '1'">Approved</span></td>
+					            </tr>
+					          </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<div *ngIf='showNoChitsText'>
+					<div class="join-context groups-section">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
