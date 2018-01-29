@@ -101,6 +101,8 @@ export class LoginComponent implements OnInit {
 						this.router.navigate(['/admin']);
 					}
 					else if(role === "agent") {
+						sessionStorage.setItem('creator_role', loggedinuser.data.creator_role);
+						sessionStorage.setItem('creator_id', loggedinuser.data._id);
 						this.router.navigate(['/agent']);
 					}
 				} else {

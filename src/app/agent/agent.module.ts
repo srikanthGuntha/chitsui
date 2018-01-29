@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AgGridModule } from "ag-grid-angular";
 
+import { AgentService } from "../_services/agent.service";
+
 import { AgentComponent } from './agent.component';
 import { AgentHeaderComponent } from './header/header.component';
 import { AgentChitsComponent } from './chits/chits.component';
@@ -36,7 +38,7 @@ const appAgentRoutes: Routes = [
     RouterModule.forChild(appAgentRoutes),
     AgGridModule.withComponents([ ])
   ],
-  providers: [],
+  providers: [AgentService],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AgentComponent]
 })

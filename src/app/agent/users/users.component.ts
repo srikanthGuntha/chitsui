@@ -3,6 +3,7 @@ import { ColumnApi, GridApi, GridOptions } from 'ag-grid';
 import { IsLoginService } from "../../_services/login.service";
 import { LoaderService } from '../../_services/loader.service';
 import { AuthenticationService } from '../../_services/authentication.service';
+import { AgentService } from '../../_services/agent.service';
 
 import { FormBuilder, FormGroup, FormsModule, FormControl, Validators , ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,7 @@ import { Router } from "@angular/router";
 export class AgentUsersComponent implements OnInit {
 
 	public columnDefs;
-    public rowData;
+    public rowData: any[] = [];
     public editType;
     public gridOptions: GridOptions = {
       rowHeight: 42,
@@ -34,21 +35,29 @@ export class AgentUsersComponent implements OnInit {
     registrationForm : FormGroup;
   public alertClass: string = "error";
   public showRegistraionMsg: string = "";
+  public creatorRole:string;
+  public creatorId:string;
   
   public user:any = {};
 
-  constructor(private isLoginService: IsLoginService, private router: Router, private loaderService: LoaderService, private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
+  constructor(private isLoginService: IsLoginService, private router: Router, private loaderService: LoaderService, private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private agentService: AgentService) {
   	this.columnDefs = [
             {
                 width: 50,
-                headerCheckboxSelection: true,
+                headerCheckboxSelection: false,
                 headerCheckboxSelectionFilteredOnly: true,
                 checkboxSelection: true
             },
             {
               width: 200,
-              headerName: "Name",
-              field: "name",
+              headerName: "First Name",
+              field: "firstname",
+              editable: true,
+            },
+            {
+              width: 200,
+              headerName: "Last Name",
+              field: "lastname",
               editable: true,
             },
             {
@@ -59,9 +68,15 @@ export class AgentUsersComponent implements OnInit {
              },
             {
               headerName: "Phone",
-              field: "phone",
+              field: "mobile",
               width: 200,
               editable: true,
+            },
+            {
+              headerName: "Creator Role",
+              field: "creator_role",
+              width: 200,
+              editable: false,
             },
             { headerName: "Action",
               width: 150,
@@ -69,21 +84,9 @@ export class AgentUsersComponent implements OnInit {
             }
         ];
         this.editType = "fullRow";
-        this.rowData = [{"id": 1, "name": "Venkatesh", "email": "va@gmail.com", "phone": "7842803071"},
-        {"id": 2, "name": "Srikanth", "email": "sg@gmail.com", "phone": "7842803072"},
-        {"id": 3, "name": "Pavan", "email": "pb@gmail.com", "phone": "7842803073"},
-        {"id": 4, "name": "Abhishek", "email": "at@gmail.com", "phone": "7842803074"},
-        {"id": 5, "name": "Shiva", "email": "sa@gmail.com", "phone": "7842803075"}];
   }
 
   ngOnInit() {
-  	this.loaderService.display(true);
-  	this.isLoginService.isLoggedIn().then((result: any) => {
-  		this.loaderService.display(false);
-  		if(result.role !== 'agent') {
-  			this.router.navigate(['/login']);
-  		}
-  	});
     this.registrationForm = this.formBuilder.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
@@ -100,6 +103,30 @@ export class AgentUsersComponent implements OnInit {
       pincode: [null, Validators.required],
       IdType: [null, Validators.required],
       idNumber: [null, Validators.required]
+    });
+    this.loaderService.display(true);
+    this.isLoginService.isLoggedIn().then((result: any) => {
+      this.loaderService.display(false);
+      if(result.role !== 'agent') {
+        this.router.navigate(['/login']);
+      }
+      this.creatorRole = result.creator_role;
+      this.creatorId = result.creator_id;
+      this.user.creator_role = result.creator_role;
+      this.user.creator_id = result.creator_id;
+    });
+
+    this.agentService.getPopulateUsersData().subscribe(result => {
+      this.loaderService.display(true);
+      if (result.success) {
+        this.rowData = result.data;
+        this.loaderService.display(false);
+      } else {
+        this.rowData = [];
+        this.loaderService.display(false);
+        var code = result.code;
+        console.log(MapErrorCodes[code] || "Something went wrong, please try again.");
+      }
     });
   }
 
@@ -137,12 +164,24 @@ export class AgentUsersComponent implements OnInit {
     }
 
     public delete(data) {
-    for (let i=0; i < this.rowData.length; i++) {
-      if (this.rowData[i].id == data.id) {
-        this.rowData.splice(i,1);
-      }
-    }
-    this.api.setRowData(this.rowData);
+      this.loaderService.display(true);
+    this.agentService.deleteUser(data)
+    .subscribe(result => {
+            if(result.success) {
+              this.loaderService.display(false);
+              for (let i=0; i < this.rowData.length; i++) {
+              if (this.rowData[i]._id == data._id) {
+                this.rowData.splice(i,1);
+              }
+            }
+            this.api.setRowData(this.rowData);
+            } else {
+              this.loaderService.display(false);
+              let code = result.code;
+              this.alertClass = "error";
+              console.log(MapErrorCodes[code]);
+            }
+        });
   }
 
   createUser(e: Event) {
@@ -155,6 +194,18 @@ export class AgentUsersComponent implements OnInit {
   }) {
     this.user = {};
     this.resetForm(this.registrationForm);
+    this.agentService.getPopulateUsersData().subscribe(result => {
+      this.loaderService.display(true);
+      if (result.success) {
+        this.rowData = result.data;
+        this.loaderService.display(false);
+      } else {
+        this.rowData = [];
+        this.loaderService.display(false);
+        var code = result.code;
+        console.log(MapErrorCodes[code] || "Something went wrong, please try again.");
+      }
+    });
   }
 
   isFieldValid(field: string) {
@@ -190,14 +241,17 @@ export class AgentUsersComponent implements OnInit {
 
   submitForm() {
     if (this.registrationForm.valid) {
-      this.authenticationService.userRegister(this.user)
+      this.loaderService.display(true);
+      this.agentService.userRegister(this.user)
          .subscribe(result => {
             if(result.success) {
+              this.loaderService.display(false);
               this.alertClass = "success";
               this.showRegistraionMsg = "User successfull added";
               this.user = {};
               this.resetForm(this.registrationForm);
             } else {
+              this.loaderService.display(false);
               let code = result.code;
               this.alertClass = "error";
               this.showRegistraionMsg = MapErrorCodes[code];
