@@ -53,11 +53,5 @@ export class AuthenticationService {
         return response && response.json();
     });
   }
-
-  userRegister(data): Observable<any> {
-    return this.http.post(this.serviceUrl + "saveregisters", data)
-      .map((response: Response) => {
-        return response && response.json();
-      });
-  }
+  
 }

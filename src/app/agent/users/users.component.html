@@ -4,12 +4,12 @@
       <div class="row">
         <div class="col-lg-12">
         <div class="row">
-        	<div class="col-lg-6"><h3>Manage Users</h3></div>
-        	<div class="col-lg-6"><button class="btn btn-success" (click)="createUser($event)">Create User</button></div>
+        	<div class="col-lg-10"><h3>Manage Users</h3></div>
+        	<div class="col-lg-2"><button class="btn btn-success" (click)="createUser($event)" [disabled]="!rowData.length">Create User</button></div>
         </div>
         </div>
         <div class="col-lg-12">
-        	<ag-grid-angular style="width: 802px; height: 300px;" class="ag-fresh"
+        	<ag-grid-angular style="width: 1200px; height: 300px;" class="ag-fresh"
 				    	#agGrid
 				    	id="myGrid"
 				    	class="ag-fresh"
@@ -100,8 +100,7 @@
                         <div class="col-sm-9">
                           <select class="form-control" id="id" name="id"  name="creatorRole" [(ngModel)]="user.creator_role" formControlName="creatorRole">
                             <option [ngValue]="undefined" disabled>Select Creator Role</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Agent">Agent</option>
+                            <option value="{{creatorRole}}">{{creatorRole}}</option>
                           </select>
                           <app-field-error-display 
                           [displayError]="isFieldValid('creatorRole')" 
@@ -174,7 +173,7 @@
                       <div class="form-group" [ngClass]="displayFieldCss('IdType')">
                         <label class="control-label required col-sm-3" for="id">Select ID Type:</label>
                         <div class="col-sm-9">
-                          <select class="form-control" id="id" name="id"  name="IdType" [(ngModel)]="user.IdType" formControlName="IdType">
+                          <select class="form-control" id="IdType" name="IdType"  name="IdType" [(ngModel)]="user.IdType" formControlName="IdType">
                             <option [ngValue]="undefined" disabled>Select ID Type</option>
                             <option value="Aadhar Card">Aadhar Card</option>
                             <option value="PAN Card">PAN Card</option>
@@ -198,10 +197,9 @@
                     <div class="form-group" [ngClass]="displayFieldCss('creatorId')">
                         <label class="control-label required col-sm-3" for="id">Creator Id:</label>
                         <div class="col-sm-9">
-                          <select class="form-control" id="id" name="id"  name="creatorId" [(ngModel)]="user.creator_id" formControlName="creatorId">
+                          <select class="form-control" id="creatorId" name="creatorId"  name="creatorId" [(ngModel)]="user.creator_id" formControlName="creatorId">
                             <option [ngValue]="undefined" disabled>Select Creator Id</option>
-                            <option value="Admin">1</option>
-                            <option value="Agent">2</option>
+                            <option value="{{creatorId}}">{{creatorId}}</option>
                           </select>
                           <app-field-error-display 
                           [displayError]="isFieldValid('creatorId')" 
