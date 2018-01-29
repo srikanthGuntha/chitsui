@@ -11,7 +11,7 @@ import { IsLoginService } from './_services/login.service';
 import { ChitsService } from './_services/getchitsdata.service';
 import { LoaderService } from './_services/loader.service';
 import { CommonService } from './_services/common.service';
-
+import { CommonComponent } from './config/common.component';
 
 // non auth components
 import { AppComponent } from './app.component';
@@ -55,6 +55,7 @@ const appRoutes: Routes = [
     ]
   },
   { loadChildren: 'app/admin/admin.module#AdminModule', path: 'admin' },
+  { loadChildren: 'app/agent/agent.module#AgentModule', path: 'agent' },
 ];
 const appUserRoutes: Routes = [
   { path: 'user', children:[
@@ -90,7 +91,8 @@ const appUserRoutes: Routes = [
     TransactionComponent,
     ProfileComponent,
     OnlyNumber,
-    GroupComponent
+    GroupComponent,
+    CommonComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,6 @@ import { BranchService } from './_services/branches.service';
 import { ChitsService } from './_services/chits.services';
 import { ChitIdService } from './_services/chitid.services';
 import { UserChitsService } from './_services/userchits.service';
-import { CommonComponent } from '../config/common.component';
 
 import { AdminComponent } from './admin.component';
 import { AdminHeaderComponent } from './header/header.component';
@@ -29,7 +28,6 @@ const appAdminRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    CommonComponent,
     AdminComponent,
     AdminHeaderComponent,
 	  AdminChitsComponent,
