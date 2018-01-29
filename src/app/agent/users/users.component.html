@@ -3,7 +3,10 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
       <div class="row">
         <div class="col-lg-12">
-          <h3>Manage Users</h3>
+        <div class="row">
+        	<div class="col-lg-6"><h3>Manage Users</h3></div>
+        	<div class="col-lg-6"><button class="btn btn-success" (click)="createUser($event)">Create User</button></div>
+        </div>
         </div>
         <div class="col-lg-12">
         	<ag-grid-angular style="width: 802px; height: 300px;" class="ag-fresh"
@@ -24,4 +27,203 @@
       </div>
   </div>
 </div>
+<app-modal [open]="manageToolsets" [title]="'Create User'" [modalSize]="'modal-large'"
+                   (close)="onToolsetsSelected($event)">
+    <div class="row" ng-show="showLoginMsg">
+                 <div class="col-lg-12">
+                    <div *ngIf="showRegistraionMsg" [ngClass]="(alertClass =='error')?'alert alert-danger':'alert alert-success'">
+                       {{showRegistraionMsg}}
+                    </div>
+                 </div>
+    </div>
+    <form (ngSubmit)="submitForm()" [formGroup]="registrationForm">
+            <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <div [ngClass]="displayFieldCss('firstName')">
+                      <label class="control-label required col-sm-3" for="firstName">First Name:</label>
+                      <div class="col-sm-9">
+                        <input class="form-control" type="text" placeholder="First Name" name="firstName" [(ngModel)]="user.firstName" formControlName="firstName">
+                        <app-field-error-display 
+                          [displayError]="isFieldValid('firstName')" 
+                          errorMsg="Please inform your first name">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <div [ngClass]="displayFieldCss('lastName')">
+                      <label class="control-label required col-sm-3" for="lastName">Last Name:</label>
+                      <div class="col-sm-9">
+                          <input class="form-control" type="text" placeholder="Last Name" name="lastName" [(ngModel)]="user.lastName" formControlName="lastName">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('lastName')" 
+                        errorMsg="Please inform your last name">
+                        </app-field-error-display>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" [ngClass]="displayFieldCss('email')">
+                      <label class="control-label required col-sm-3" for="email">Email:</label>
+                      <div class="col-sm-9">          
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" formControlName="email" placeholder="Email" (blur)="ifEmailExists(user.email)">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('email')" 
+                        errorMsg="Please inform your email">
+                        </app-field-error-display>
+                        </div>
+                      </div>
+                  <div class="form-group" [ngClass]="displayFieldCss('mobileNumber')">
+                      <label class="control-label required col-sm-3" for="mobileNumber">Mobile:</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeHolder="Mobile" name="mobileNumber" [(ngModel)]="user.mobileNumber" OnlyNumber="true" formControlName="mobileNumber" (blur)="ifMobileExists(user.mobileNumber)">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('mobileNumber')" 
+                        errorMsg="Please inform your mobile number">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <div [ngClass]="displayFieldCss('password')">
+                      <label class="control-label required col-sm-3" for="password">Password:</label>
+                      <div class="col-sm-9">
+                        <input class="form-control" type="password" placeholder="Password" name="password" [(ngModel)]="user.password" formControlName="password">
+                        <app-field-error-display 
+                          [displayError]="isFieldValid('password')" 
+                          errorMsg="Please inform your password">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group" [ngClass]="displayFieldCss('creatorRole')">
+                        <label class="control-label required col-sm-3" for="id">Creator Role:</label>
+                        <div class="col-sm-9">
+                          <select class="form-control" id="id" name="id"  name="creatorRole" [(ngModel)]="user.creator_role" formControlName="creatorRole">
+                            <option [ngValue]="undefined" disabled>Select Creator Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Agent">Agent</option>
+                          </select>
+                          <app-field-error-display 
+                          [displayError]="isFieldValid('creatorRole')" 
+                          errorMsg="Please select Creator Role">
+                          </app-field-error-display>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('address')">
+                      <label class="control-label required col-sm-3" for="address">Address Line1:</label>
+                      <div class="col-sm-9">          
+                        <input type="text" class="form-control" id="address" name="address" [(ngModel)]="user.address" formControlName="address" placeholder="Address">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('address')" 
+                        errorMsg="Please inform your address">
+                        </app-field-error-display>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3" for="address2">Address Line2:</label>
+                        <div class="col-sm-9">          
+                          <input type="text" class="form-control" id="address2" name="address2" [(ngModel)]="user.address2" formControlName="address2" placeholder="Address">
+                          </div>
+                      </div>
+              </div>
+              <div class="col-sm-6">
+                    
+                    <div class="form-group">
+                        <div [ngClass]="displayFieldCss('city')">
+                          <label class="control-label required col-sm-3" for="city">City:</label>
+                          <div class="col-sm-9">
+                            <input class="form-control" type="text" placeholder="City" name="city" [(ngModel)]="user.city" formControlName="city">
+                            <app-field-error-display 
+                              [displayError]="isFieldValid('city')" 
+                              errorMsg="Please inform your city">
+                            </app-field-error-display>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div [ngClass]="displayFieldCss('state')">
+                          <label class="control-label required col-sm-3" for="state">State:</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" id="state" name="state" name="state" [(ngModel)]="user.state" formControlName="state">
+                              <option [ngValue]="undefined" disabled>Select State</option>
+                              <option value="aadhar">Andhra Pradesh</option>
+                              <option value="pancard">Telangana</option>
+                            </select>
+                            <app-field-error-display 
+                              [displayError]="isFieldValid('state')" 
+                              errorMsg="Please inform your state">
+                            </app-field-error-display>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div [ngClass]="displayFieldCss('pincode')">
+                          <label class="control-label required col-sm-3" for="pincode">Pincode:</label>
+                          <div class="col-sm-9">
+                            <input class="form-control" type="text" placeholder="Pincode" name="pincode" [(ngModel)]="user.pincode" OnlyNumber="true" formControlName="pincode">
+                            <app-field-error-display 
+                              [displayError]="isFieldValid('pincode')" 
+                              errorMsg="Please inform your pincode">
+                            </app-field-error-display>
+                          </div>
+                      </div>
+                    </div>
+
+                      <div class="form-group" [ngClass]="displayFieldCss('IdType')">
+                        <label class="control-label required col-sm-3" for="id">Select ID Type:</label>
+                        <div class="col-sm-9">
+                          <select class="form-control" id="id" name="id"  name="IdType" [(ngModel)]="user.IdType" formControlName="IdType">
+                            <option [ngValue]="undefined" disabled>Select ID Type</option>
+                            <option value="Aadhar Card">Aadhar Card</option>
+                            <option value="PAN Card">PAN Card</option>
+                          </select>
+                          <app-field-error-display 
+                          [displayError]="isFieldValid('IdType')" 
+                          errorMsg="Please select IdType">
+                          </app-field-error-display>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('idNumber')">
+                      <label class="control-label required col-sm-3" for="idNumber">ID Number:</label>
+                      <div class="col-sm-9">          
+                        <input type="text" class="form-control" id="idNumber" name="idNumber" [(ngModel)]="user.IdNumber" formControlName="idNumber" placeholder="ID Number">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('idNumber')" 
+                        errorMsg="Please inform your idNumber">
+                        </app-field-error-display>
+                      </div>
+                    </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('creatorId')">
+                        <label class="control-label required col-sm-3" for="id">Creator Id:</label>
+                        <div class="col-sm-9">
+                          <select class="form-control" id="id" name="id"  name="creatorId" [(ngModel)]="user.creator_id" formControlName="creatorId">
+                            <option [ngValue]="undefined" disabled>Select Creator Id</option>
+                            <option value="Admin">1</option>
+                            <option value="Agent">2</option>
+                          </select>
+                          <app-field-error-display 
+                          [displayError]="isFieldValid('creatorId')" 
+                          errorMsg="Please select Creator Id">
+                          </app-field-error-display>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('dob')">
+                      <label class="control-label required col-sm-3" for="dob">DOB:</label>
+                      <div class="col-sm-9">
+                        <input type="date" class="form-control" placeHolder="Date of Birth" name="dob" [(ngModel)]="user.dob" formControlName="dob" id="datePicker">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('dob')" 
+                        errorMsg="Please inform your date of birth">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row row-center">
+                <button class="btn btn-create" type="submit" >Create Account</button>
+            </div>
+        </form>
+</app-modal>
 </div>

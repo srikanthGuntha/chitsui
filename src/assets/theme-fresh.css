@@ -45,7 +45,7 @@
     vertical-align: middle;
     border: 0; }
   .ag-fresh .ag-root {
-    border: 1px solid darkgrey; }
+    /*border: 1px solid darkgrey;*/ }
   .ag-fresh .ag-cell-data-changed {
     background-color: #cec; }
   .ag-fresh .ag-cell-data-changed-animation {
@@ -69,8 +69,9 @@
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent; }
   .ag-fresh .ag-ltr .ag-cell-no-focus {
-    border-right: 1px dotted silver;
-    border-left: 1px solid transparent; }
+    /*border-right: 1px dotted silver;*/
+    border-left: 1px solid transparent;
+    padding-top: 12px; }
   .ag-fresh .ag-rtl .ag-cell-no-focus {
     border-right: 1px solid transparent;
     border-left: 1px dotted silver; }
@@ -126,8 +127,8 @@
     padding: 2px;
     padding-top: 4px; }
   .ag-fresh .ag-header {
-    color: #333;
-    background: linear-gradient(white, lightgrey);
+    color: white;
+    background: #ff413ed9;
     border-bottom: 1px solid darkgrey;
     font-weight: normal; }
   .ag-fresh .ag-header-icon {
@@ -161,7 +162,8 @@
     background: linear-gradient(white, lightgrey);
     border-bottom: 1px solid darkgrey; }
   .ag-fresh .ag-ltr .ag-header-cell {
-    border-right: 1px solid darkgrey; }
+    /*border-right: 1px solid darkgrey;*/
+    padding-top: 12px;}
   .ag-fresh .ag-rtl .ag-header-cell {
     border-left: 1px solid darkgrey; }
   .ag-fresh .ag-header-cell-moving .ag-header-cell-label {
@@ -169,7 +171,7 @@
   .ag-fresh .ag-header-cell-moving {
     background-color: #bebebe; }
   .ag-fresh .ag-ltr .ag-header-group-cell {
-    border-right: 1px solid darkgrey; }
+    /*border-right: 1px solid darkgrey;*/ }
   .ag-fresh .ag-rtl .ag-header-group-cell {
     border-left: 1px solid darkgrey; }
   .ag-fresh .ag-header-group-cell-with-group {
@@ -192,7 +194,7 @@
   .ag-fresh .ag-rtl .ag-pinned-left-header {
     border-right: 1px solid darkgrey; }
   .ag-fresh .ag-body {
-    background-color: #f6f6f6; }
+    /*background-color: #f6f6f6;*/ }
   .ag-fresh .ag-row-odd {
     background-color: #f6f6f6; }
   .ag-fresh .ag-row-even {

@@ -100,6 +100,9 @@ export class LoginComponent implements OnInit {
 					} else if(role === "admin") {
 						this.router.navigate(['/admin']);
 					}
+					else if(role === "agent") {
+						this.router.navigate(['/agent']);
+					}
 				} else {
 					let code = loggedinuser.code;
 					console.log(code);

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -9,6 +9,7 @@ import { AgentComponent } from './agent.component';
 import { AgentHeaderComponent } from './header/header.component';
 import { AgentChitsComponent } from './chits/chits.component';
 import { AgentUsersComponent } from './users/users.component';
+import { ModalComponent } from './modal/modal.component';
 
 const appAgentRoutes: Routes = [
   { path: '', redirectTo: 'users' },
@@ -23,7 +24,8 @@ const appAgentRoutes: Routes = [
     AgentComponent,
     AgentHeaderComponent,
 	  AgentChitsComponent,
-    AgentUsersComponent
+    AgentUsersComponent,
+    ModalComponent
   ],
   imports: [
     FormsModule,
@@ -35,6 +37,7 @@ const appAgentRoutes: Routes = [
     AgGridModule.withComponents([ ])
   ],
   providers: [],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AgentComponent]
 })
 export class AgentModule { }
