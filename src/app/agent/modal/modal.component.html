@@ -1,0 +1,19 @@
+<div class="modal {{ modalSize }}" [ngClass]="{ 'is-active': visible }">
+  <div class="modal-background" (click)="close('cancel', $event)"></div>
+  <div class="modal-card">
+    <div class="modal-card-head">
+      <p class="modal-card-title">{{title}}</p>
+      <button class="delete has-no-margin-top" (click)="close('cancel', $event)"></button>
+    </div>
+    <section class="modal-card-body">
+      <ng-content></ng-content>
+    </section>
+    <!-- <div class="modal-card-foot row">
+      <div class="column"></div>
+      <div>
+        <button class="button" (click)="close('cancel', $event)">{{cancelText}}</button>
+        <button class="button is-dark" (click)="save('ok', $event)">{{saveText}}</button>
+      </div>
+    </div> -->
+  </div>
+</div>

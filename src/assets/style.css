@@ -134,6 +134,234 @@
     transform: rotate(360deg);
   }
 }
+
+.modal {
+  z-index: 200;
+
+  &.modal-large .modal-card {
+    min-height: 75vh;
+    min-width: 95vw;
+  }
+}
+.modal-background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: rgba(10, 10, 10, 0.86); }
+
+.modal-content,
+.modal-card {
+  margin: 0 20px;
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+  position: relative;
+  width: 100%; }
+  @media screen and (min-width: 769px), print {
+    .modal-content,
+    .modal-card {
+      margin: 0 auto;
+      max-height: calc(100vh - 40px);
+      width: 640px; } }
+
+.modal-close {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: rgba(10, 10, 10, 0.2);
+  border: none;
+  border-radius: 290486px;
+  cursor: pointer;
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 1rem;
+  height: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  min-width: 20px;
+  outline: none;
+  position: relative;
+  vertical-align: top;
+  width: 20px;
+  background: none;
+  height: 40px;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 40px; }
+  .modal-close:before, .modal-close:after {
+    background-color: white;
+    content: "";
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    transform-origin: center center; }
+  .modal-close:before {
+    height: 2px;
+    width: 50%; }
+  .modal-close:after {
+    height: 50%;
+    width: 2px; }
+  .modal-close:hover, .modal-close:focus {
+    background-color: rgba(10, 10, 10, 0.3); }
+  .modal-close:active {
+    background-color: rgba(10, 10, 10, 0.4); }
+  .modal-close.is-small {
+    height: 16px;
+    width: 16px; }
+  .modal-close.is-medium {
+    height: 24px;
+    width: 24px; }
+  .modal-close.is-large {
+    height: 32px;
+    width: 32px; }
+
+.modal-card {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
+  width: 70vw; }
+
+.modal-card-head,
+.modal-card-foot {
+  align-items: center;
+  background-color: #EBEBEB;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  padding: 20px;
+  position: relative; }
+
+.modal-card-head {
+  border-bottom: 1px solid gainsboro;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.modal-card-title {
+  color: #353535;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1; }
+
+.modal-card-foot {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: 1px solid gainsboro; }
+  .modal-card-foot .button:not(:last-child) {
+    margin-right: 10px; }
+
+.modal-card-body {
+  -webkit-overflow-scrolling: touch;
+  background-color: white;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 20px; }
+
+.modal {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  align-items: center;
+  display: none;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  z-index: 20; }
+  .modal.is-active {
+    display: flex; }
+
+.delete {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: rgba(10, 10, 10, 0.2);
+  border: none;
+  border-radius: 290486px;
+  cursor: pointer;
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 1rem;
+  height: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  min-width: 20px;
+  outline: none;
+  position: relative;
+  vertical-align: top;
+  width: 20px; }
+  .delete:before, .delete:after {
+    background-color: white;
+    content: "";
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    transform-origin: center center; }
+  .delete:before {
+    height: 2px;
+    width: 50%; }
+  .delete:after {
+    height: 50%;
+    width: 2px; }
+  .delete:hover, .delete:focus {
+    background-color: rgba(10, 10, 10, 0.3); }
+  .delete:active {
+    background-color: rgba(10, 10, 10, 0.4); }
+  .delete.is-small {
+    height: 16px;
+    width: 16px; }
+  .delete.is-medium {
+    height: 24px;
+    width: 24px; }
+  .delete.is-large {
+    height: 32px;
+    width: 32px; }
+
+/**
+Fix for IE where modal's arent centered, targets IE10 + 11
+*/
+@media screen and (-ms-high-constract: active), screen and (-ms-high-contrast: none) {
+  .modal-content, .modal-card {
+    margin: 0;
+  }
+}
+
+/**
+Fix for ngx-datatable when a footer is present, for any version of Firefox
+*/
+@-moz-document url-prefix() {
+  .has-overflow-y .visible {
+    overflow-y: auto;
+  }
+}
+/**
+Fix for ngx-datatable when a footer is present, for IE10/11
+*/
+@media screen and (-ms-high-constract: active), screen and (-ms-high-contrast: none) {
+  .has-overflow-y .visible {
+    overflow-y : inherit;
+  }
 /*=====================================
   media Qwueries
   =====================================*/
