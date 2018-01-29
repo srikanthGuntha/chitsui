@@ -1,0 +1,64 @@
+<div class="topbar">
+   <div class="topbar-left">
+      <div class="text-center admin-logo">
+         <a [routerLink]="['chits']" class="logo">
+         <i class="zmdi zmdi-toys icon-c-logo"></i><span>Striken Sun</span>
+         </a>
+      </div>
+   </div>
+   <div class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+         <div class="">
+            <!-- <div class="pull-left">
+               <div class="navbar-header">
+                 <button type="button" class="navbar-toggle open-left" data-toggle="collapse" data-target="#myNavbar">
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>                        
+                 </button>
+              </div>
+               <span class="clearfix"></span>
+            </div> -->
+            <div class="navbar-left admin-dashboard pull-left hidden-xs">
+              <h3>Agent Dashboard</h3>
+            </div>
+            <!-- <div class="navbar-left app-search pull-left hidden-xs">
+               <input type="text" placeholder="Search..." class="form-control">
+               <a><i class="fa fa-search"></i></a>
+            </div> -->
+            <ul class="nav navbar-nav navbar-right pull-right">
+               <li class="dropdown user-box">
+                  <a href="" class="dropdown-toggle waves-effect waves-light profile " data-toggle="dropdown" aria-expanded="true">
+                     <i _ngcontent-c1="" class="fa fa-user-circle user-icon"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                     <!-- <li><a href=""><i class="ti-user m-r-5"></i> Profile</a></li>
+                     <li><a href=""><i class="ti-settings m-r-5"></i> Settings</a></li>
+                     <li><a href=""><i class="ti-lock m-r-5"></i> Lock screen</a></li> -->
+                     <li><a (click)="btnClickLogout()"><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="left side-menu">
+   <div class="sidebar-inner slimscrollleft">
+      <div id="sidebar-menu">
+         <ul>
+            <li class="text-muted menu-title">Navigation</li>
+            <li class="has_sub">
+               <a [routerLink]="['users']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="waves-effect"><i class="fa fa-user-o"></i> <span> Users </span> </a>
+            </li>
+            <li class="has_sub">
+               <a [routerLink]="['chits']" routerLinkActive="active" class="waves-effect"><i class="fa fa-table"> </i> <span> Chits </span> </a>
+            </li>
+         </ul>
+         <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+   </div>
+</div>
+
+
