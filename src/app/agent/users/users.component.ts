@@ -37,6 +37,7 @@ export class AgentUsersComponent implements OnInit {
   public showRegistraionMsg: string = "";
   public creatorRole:string;
   public creatorId:string;
+  public showPopup:boolean = false;
   
   public user:any = {};
 
@@ -185,6 +186,7 @@ export class AgentUsersComponent implements OnInit {
   }
 
   createUser(e: Event) {
+    this.showPopup = true;
     this.manageToolsets.emit(new Event("open"));
   }
 
@@ -194,6 +196,7 @@ export class AgentUsersComponent implements OnInit {
   }) {
     this.user = {};
     this.resetForm(this.registrationForm);
+    this.showPopup = false;
     this.agentService.getPopulateUsersData().subscribe(result => {
       this.loaderService.display(true);
       if (result.success) {
