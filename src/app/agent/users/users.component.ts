@@ -196,6 +196,7 @@ export class AgentUsersComponent implements OnInit {
   }) {
     this.user = {};
     this.resetForm(this.registrationForm);
+    this.showRegistraionMsg = "";
     this.showPopup = false;
     this.agentService.getPopulateUsersData().subscribe(result => {
       this.loaderService.display(true);
