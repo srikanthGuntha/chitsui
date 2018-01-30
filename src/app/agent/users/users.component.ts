@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnDestroy, OnInit, } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnDestroy, OnInit } from '@angular/core';
 import { ColumnApi, GridApi, GridOptions } from 'ag-grid';
 import { IsLoginService } from "../../_services/login.service";
 import { LoaderService } from '../../_services/loader.service';

@@ -40,4 +40,19 @@ export class AgentService {
       });
   }
 
+  // getPopulateChitData(): Observable<any> {
+  //   return this.http.get(this.serviceUrl + "getchitsdata", {headers: this.headers})
+  //     .map((response: Response) => {
+  //       this.commonService.isSessionExpired(response);
+  //       return response && response.json();
+  //     });
+  // }
+
+  // addChits(data): Observable<any> {
+  //   return this.http.post(this.serviceUrl + "saveregisters", data, {headers: this.headers})
+  //     .map((response: Response) => {
+  //       return response && response.json();
+  //     });
+  // }
+
 }

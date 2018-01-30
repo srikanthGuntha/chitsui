@@ -3,9 +3,87 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
       <div class="row">
         <div class="col-lg-12">
-          <h3>Manage Chits</h3>
+        <div class="row">
+        	<div class="col-lg-10"><h3>Manage Chits</h3></div>
+        	<div class="col-lg-2"><button class="btn btn-success" (click)="createChits($event)" [disabled]="!chitsData.length">Add Chits</button></div>
         </div>
+        </div>
+        <div class="col-lg-11">
+        	<div *ngIf='chitsData.length'>
+					<div class="">
+						<table class="table table-bordered">
+							<thead>
+					            <tr>
+					              <th scope="col">S.no</th>
+					              <th scope="col">Chit Value</th>
+					              <th scope="col">Months</th>
+					              <th scope="col">Subscription</th>
+					              <th scope="col">Chit Number</th>
+					            </tr>
+					          </thead>
+					          <tbody>
+					            <tr *ngFor="let data of chitsData; let row_no = index">
+					              	<th scope="row">{{row_no + 1}}</th>
+					              	<td>{{data.chitvalue}}</td>
+							        <td>{{data.tenure}}</td>
+							        <td>{{data.subfee}}</td>
+							        <td>{{data.chitid.chitid}}</td>
+					            </tr>
+					          </tbody>
+						</table>
+					</div>
+				</div>
+        </div>
+        <div class="col-lg-12">
+				<div *ngIf='!chitsData.length'>
+					<div class="join-context groups-section">
+						No active chits group in Striken Sun.
+					</div>
+				</div>
+			</div>
       </div>
   </div>
 </div>
+<app-modal [open]="manageToolsets" [title]="'Add Chits'" [modalSize]="'modal-large'"
+                   (close)="onToolsetsSelected($event)">
+    <form (ngSubmit)="submitForm()" [formGroup]="chitsForm">
+    	<div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                    <div [ngClass]="displayFieldCss('chitId')">
+                      <div class="col-sm-12">
+                        <select class="form-control" id="chitId" name="chitId"  name="chitId" [(ngModel)]="chits.chitId" formControlName="chitId">
+                            <option [ngValue]="undefined" disabled>Select Chit ID</option>
+                            <option *ngFor="let data of chitsData" [ngValue]="data.chitid.chitid">{{data.chitid.chitid}}</option>
+                          </select>
+                        <app-field-error-display 
+                          [displayError]="isFieldValid('chitId')" 
+                          errorMsg="Please inform your chit id">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                  <div class="form-group">
+                    <div [ngClass]="displayFieldCss('user')">
+                      <div class="col-sm-12">
+                        <select class="form-control" id="user" name="user"  name="user" [(ngModel)]="chits.user" formControlName="user">
+                            <option [ngValue]="undefined" disabled>Select User</option>
+                            <option *ngFor="let data of userData" [ngValue]="data.firstname">{{data.firstname}}</option>
+                          </select>
+                        <app-field-error-display 
+                          [displayError]="isFieldValid('user')" 
+                          errorMsg="Please inform your user">
+                        </app-field-error-display>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-center">
+                <button class="btn btn-create" type="submit" >Add User</button>
+            </div>
+    </form>
+                   </app-modal>
 </div>
