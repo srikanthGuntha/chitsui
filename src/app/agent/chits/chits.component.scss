@@ -5,4 +5,33 @@
 		color: #FF6072;
 		margin-bottom: 20px;
 	}
+	.btn-success {
+        margin-top: 20px;
+    }
+    table {
+	    border: 1px solid #cccccc;
+	    display: inline-table;
+	    margin-top: 15px;
+	  }
+	  thead {
+	    background-color: #FF4537;
+	    color: white;
+	  }
+	  tbody tr td {
+	    border-right: 1px solid #cccccc;
+	  }
+	  .form-group {
+        padding-bottom: 40px;
+    }
+    .btn-create {
+        border-radius: 0;
+        background-color: #FF4537;
+        vertical-align: super;
+        color: white;
+        margin-bottom: 30px;
+        padding: 15px 25px 15px 25px;
+    }
+    .row-center {
+        text-align: center;
+    }
 }
