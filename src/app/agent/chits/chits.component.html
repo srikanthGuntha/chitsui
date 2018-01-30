@@ -46,15 +46,22 @@
 </div>
 <app-modal [open]="manageToolsets" [title]="'Add Chits'" [modalSize]="'modal-large'"
                    (close)="onToolsetsSelected($event)">
+    <div class="row" ng-show="showLoginMsg">
+                 <div class="col-lg-12">
+                    <div *ngIf="showUserChitsMsg" [ngClass]="(alertClass =='error')?'alert alert-danger':'alert alert-success'">
+                       {{showUserChitsMsg}}
+                    </div>
+                 </div>
+    </div>
     <form (ngSubmit)="submitForm()" [formGroup]="chitsForm">
     	<div class="row">
               <div class="col-sm-6">
                   <div class="form-group">
                     <div [ngClass]="displayFieldCss('chitId')">
                       <div class="col-sm-12">
-                        <select class="form-control" id="chitId" name="chitId"  name="chitId" [(ngModel)]="chits.chitId" formControlName="chitId">
+                        <select class="form-control" id="chitId" name="chitId"  name="chitId" [(ngModel)]="chits.chit_id" formControlName="chitId">
                             <option [ngValue]="undefined" disabled>Select Chit ID</option>
-                            <option *ngFor="let data of chitsData" [ngValue]="data.chitid.chitid">{{data.chitid.chitid}}</option>
+                            <option *ngFor="let data of chitsData" [ngValue]="data.branch._id">{{data.chitid.chitid}}</option>
                           </select>
                         <app-field-error-display 
                           [displayError]="isFieldValid('chitId')" 
@@ -68,9 +75,9 @@
                   <div class="form-group">
                     <div [ngClass]="displayFieldCss('user')">
                       <div class="col-sm-12">
-                        <select class="form-control" id="user" name="user"  name="user" [(ngModel)]="chits.user" formControlName="user">
+                        <select class="form-control" id="user" name="user"  name="user" [(ngModel)]="chits.userid" formControlName="user">
                             <option [ngValue]="undefined" disabled>Select User</option>
-                            <option *ngFor="let data of userData" [ngValue]="data.firstname">{{data.firstname}}</option>
+                            <option *ngFor="let data of userData" [ngValue]="data._id">{{data.firstname}}</option>
                           </select>
                         <app-field-error-display 
                           [displayError]="isFieldValid('user')" 

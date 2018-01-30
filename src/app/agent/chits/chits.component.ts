@@ -18,11 +18,12 @@ export class AgentChitsComponent implements OnInit {
 
   public chitsData: any[] = [];
   public userData: any[] = [];
-  public showNoChitsText:string = "";
   public noActiveShits:boolean = false;
   manageToolsets: EventEmitter<Event> = new EventEmitter<Event>();
   chitsForm : FormGroup;
   public chits:any = {};
+  public alertClass: string = "error";
+  public showUserChitsMsg: string = "";
 
   constructor(private isLoginService: IsLoginService, private router: Router, private loaderService: LoaderService, private agentService: AgentService, private formBuilder: FormBuilder, private getdataservice: GetDataService) {
   }
@@ -68,6 +69,7 @@ export class AgentChitsComponent implements OnInit {
     initiator: Event
   }) {
     this.chits = {};
+    this.showUserChitsMsg = "";
     this.resetForm(this.chitsForm);
   }
 
@@ -84,26 +86,26 @@ export class AgentChitsComponent implements OnInit {
 
   submitForm() {
     this.validateAllFormFields(this.chitsForm);
-    // if (this.chitsForm.valid) {
-    //   this.loaderService.display(true);
-    //   this.agentService.addChits(this.chits)
-    //      .subscribe(result => {
-    //         if(result.success) {
-    //           this.loaderService.display(false);
-    //           this.alertClass = "success";
-    //           this.showRegistraionMsg = "User successfull added";
-    //           this.chits = {};
-    //           this.resetForm(this.chitsForm);
-    //         } else {
-    //           this.loaderService.display(false);
-    //           let code = result.code;
-    //           this.alertClass = "error";
-    //           this.showRegistraionMsg = MapErrorCodes[code];
-    //         }
-    //     });
-    // } else {
-    //   this.validateAllFormFields(this.chitsForm);
-    // }
+    if (this.chitsForm.valid) {
+      this.loaderService.display(true);
+      this.agentService.addChits(this.chits)
+         .subscribe(result => {
+            if(result.success) {
+              this.loaderService.display(false);
+              this.alertClass = "success";
+              this.showUserChitsMsg = "User successfull added";
+              this.chits = {};
+              this.resetForm(this.chitsForm);
+            } else {
+              this.loaderService.display(false);
+              let code = result.code;
+              this.alertClass = "error";
+              this.showUserChitsMsg = MapErrorCodes[code];
+            }
+        });
+    } else {
+      this.validateAllFormFields(this.chitsForm);
+    }
   }
 
   validateAllFormFields(formGroup: FormGroup) {

@@ -26,5 +26,29 @@
   <app-root>Loading...</app-root>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- <script type="text/javascript">
+    (function() {  
+  if (!sessionStorage.length) {
+    // Ask other tabs for session storage
+    localStorage.setItem('getSessionStorage', Date.now());
+  };
+  window.addEventListener('storage', function(event) {
+    if (event.key == 'getSessionStorage') {
+      localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+      localStorage.removeItem('sessionStorage');
+    } else if (event.key == 'sessionStorage' && !sessionStorage.length) {
+      var data = JSON.parse(event.newValue),
+            value;
+      for (key in data) {
+        sessionStorage.setItem(key, data[key]);
+      }
+      showSessionStorage();
+    }
+  });
+  window.onbeforeunload = function() {
+    //sessionStorage.clear();
+  };
+})();
+  </script> -->
 </body>
 </html>

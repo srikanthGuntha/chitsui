@@ -48,11 +48,11 @@ export class AgentService {
   //     });
   // }
 
-  // addChits(data): Observable<any> {
-  //   return this.http.post(this.serviceUrl + "saveregisters", data, {headers: this.headers})
-  //     .map((response: Response) => {
-  //       return response && response.json();
-  //     });
-  // }
+  addChits(data): Observable<any> {
+    return this.http.post(this.serviceUrl + "saveuserchits", data, {headers: this.headers})
+      .map((response: Response) => {
+        return response && response.json();
+      });
+  }
 
 }
