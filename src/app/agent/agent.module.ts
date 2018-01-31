@@ -12,12 +12,14 @@ import { AgentHeaderComponent } from './header/header.component';
 import { AgentChitsComponent } from './chits/chits.component';
 import { AgentUsersComponent } from './users/users.component';
 import { ModalComponent } from './modal/modal.component';
+import { AgentManagementComponent } from './management/management.component';
 
 const appAgentRoutes: Routes = [
   { path: '', redirectTo: 'users' },
   { path: '', component: AgentHeaderComponent, outlet:'header' },
   { path: 'users', component: AgentUsersComponent},
   { path: 'chits', component: AgentChitsComponent},
+  { path: 'managechits', component: AgentManagementComponent},
   { path: 'agent/**', redirectTo: 'users', pathMatch: 'full' }
 ];
 
@@ -27,7 +29,8 @@ const appAgentRoutes: Routes = [
     AgentHeaderComponent,
 	  AgentChitsComponent,
     AgentUsersComponent,
-    ModalComponent
+    ModalComponent,
+    AgentManagementComponent
   ],
   imports: [
     FormsModule,

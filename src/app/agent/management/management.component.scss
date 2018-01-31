@@ -1,0 +1,16 @@
+#chits-component {
+	margin-top: 75px;
+
+	h3 {
+		color: #FF6072;
+		margin-bottom: 20px;
+	}
+    .btn-success {
+        margin-top: 20px;
+    }
+    /deep/ .del {
+        font-size: 20px;
+        cursor: pointer;
+        margin-right: 15px;
+    } 
+}
