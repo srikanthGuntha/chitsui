@@ -26,7 +26,8 @@ export class AdminChitsComponent implements OnInit {
    isNewRecord : boolean;
    statusMessage:string;
    chitids :any;
-
+   public alertClass: string = "error";
+   public showChitsErrormsg: string = "";
 
 
 
@@ -74,30 +75,43 @@ loadTemplate(chit : Chit) {
         }
     }
 
+    cancel() {
+        this.chits.pop();
+        this.selectedChit = null;
+        this.showChitsErrormsg="";
+    }
+
     saveChit() {
-        if(this.isNewRecord){
-            //add a new Employee
-             this.chitsService.addChit(this.selectedChit).subscribe((resp : Response) => {
-                this.chit = resp.json(),
-                this.statusMessage = 'Record Added Successfully.',
-                 this.loadChits();
-                 this.loadBranches();
-                 this.loadChitIds();
-            });
-            this.isNewRecord=false;
-            this.selectedChit = null;
-           
-        }
-        else{
-            //edit the record
-             this.chitsService.updateChit(this.selectedChit._id,this.selectedChit).subscribe((resp : Response) => {
-                this.statusMessage = 'Record Updated Successfully.',
-                 this.loadChits();
-                 this.loadBranches();
-                 this.loadChitIds();
-            });
-            this.selectedChit = null;
-            
+      if(this.selectedChit.branch && this.selectedChit.chitid && this.selectedChit.chitValue && this.selectedChit.subfee &&this.selectedChit.tenure){
+            this.showChitsErrormsg="";
+            this.alertClass="";
+          if(this.isNewRecord){
+              //add a new Employee
+               this.chitsService.addChit(this.selectedChit).subscribe((resp : Response) => {
+                  this.chit = resp.json(),
+                  this.statusMessage = 'Record Added Successfully.',
+                   this.loadChits();
+                   this.loadBranches();
+                   this.loadChitIds();
+              });
+              this.isNewRecord=false;
+              this.selectedChit = null;
+             
+          }
+          else{
+              //edit the record
+               this.chitsService.updateChit(this.selectedChit._id,this.selectedChit).subscribe((resp : Response) => {
+                  this.statusMessage = 'Record Updated Successfully.',
+                   this.loadChits();
+                   this.loadBranches();
+                   this.loadChitIds();
+              });
+              this.selectedChit = null;
+              
+          }
+        }else{
+          this.showChitsErrormsg="Please fill all fileds";
+            this.alertClass="error";
         }
     }
     addChit(){

@@ -6,6 +6,13 @@
 					<h3>Manage Chitids</h3>
 				</div>
 			</div>
+			<div class="row" ng-show="showLoginMsg">
+				<div class="col-sm-4">
+				   <div *ngIf="showChitIdsErrormsg" [ngClass]="(alertClass =='error')?'alert alert-danger':'alert alert-success'">
+					  {{showChitIdsErrormsg}}
+				   </div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<button class="btn btn-success btn-circle pull-right"
@@ -48,6 +55,7 @@
 	<td><input type="text" [(ngModel)]="selectedChitId.chitid" /></td>
 	<td>
 		<select [(ngModel)]="selectedChitId.branch.branchid">
+			<option value="">select branch</option>
 			<option *ngFor="let branch of branches" value= {{branch._id}}>{{branch.branchname}}</option>
 		</select>
 	</td>
