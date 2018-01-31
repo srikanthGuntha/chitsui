@@ -40,13 +40,12 @@ export class AgentService {
       });
   }
 
-  // getPopulateChitData(): Observable<any> {
-  //   return this.http.get(this.serviceUrl + "getchitsdata", {headers: this.headers})
-  //     .map((response: Response) => {
-  //       this.commonService.isSessionExpired(response);
-  //       return response && response.json();
-  //     });
-  // }
+  deleteUserChits(data): Observable<any> {
+    return this.http.delete(this.serviceUrl + "deleteuserchits?id="+data._id, {headers: this.headers})
+      .map((response: Response) => {
+        return response && response.json();
+      });
+  }
 
   addChits(data): Observable<any> {
     return this.http.post(this.serviceUrl + "saveuserchits", data, {headers: this.headers})
