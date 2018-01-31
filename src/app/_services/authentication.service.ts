@@ -30,7 +30,7 @@ export class AuthenticationService {
 
   logout(): void {
     localStorage.removeItem('currentUser');
-    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigate(['/login']);
     window.location.reload();
   }

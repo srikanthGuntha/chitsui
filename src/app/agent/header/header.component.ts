@@ -15,7 +15,7 @@ export class AgentHeaderComponent implements OnInit {
 
   public btnClickLogout(): void {
   	localStorage.removeItem('currentUser');
-    sessionStorage.clear();
+    localStorage.clear();
   	this.router.navigate(['/login']);
     window.location.reload();
   }

@@ -12,7 +12,7 @@ export class CommonService {
   		if(code === 101801 || code === 101802) {
   			// alert("You session has expired. Re-directing to Login page.");
 		    localStorage.removeItem('currentUser');
-		    sessionStorage.clear();
+		    localStorage.clear();
 		    this.router.navigate(['/login']);
 		    window.location.reload();
   		}

@@ -79,30 +79,30 @@ export class LoginComponent implements OnInit {
 		              }));
 
 					if (typeof (Storage) !== undefined ) {
-						sessionStorage.setItem('role', role);
-						sessionStorage.setItem('id', id);
+						localStorage.setItem('role', role);
+						localStorage.setItem('id', id);
 					}
 					if (role === "user") {
-						sessionStorage.setItem('firstname', fullname);
-						sessionStorage.setItem('name', loggedinuser.data.firstname);
-						sessionStorage.setItem('lname', loggedinuser.data.lastname);
-						sessionStorage.setItem('email', loggedinuser.data.email);
-						sessionStorage.setItem('mobileNumber', loggedinuser.data.mobile);
-						sessionStorage.setItem('dob', loggedinuser.data.dob);
-						sessionStorage.setItem('address', loggedinuser.data.address1);
-						sessionStorage.setItem('address2', loggedinuser.data.address2);
-						sessionStorage.setItem('city', loggedinuser.data.city);
-						sessionStorage.setItem('state', loggedinuser.data.state);
-						sessionStorage.setItem('pincode', loggedinuser.data.pincode);
-						sessionStorage.setItem('IdType', loggedinuser.data.idtype);
-						sessionStorage.setItem('idNumber', loggedinuser.data.idnumber);
+						localStorage.setItem('firstname', fullname);
+						localStorage.setItem('name', loggedinuser.data.firstname);
+						localStorage.setItem('lname', loggedinuser.data.lastname);
+						localStorage.setItem('email', loggedinuser.data.email);
+						localStorage.setItem('mobileNumber', loggedinuser.data.mobile);
+						localStorage.setItem('dob', loggedinuser.data.dob);
+						localStorage.setItem('address', loggedinuser.data.address1);
+						localStorage.setItem('address2', loggedinuser.data.address2);
+						localStorage.setItem('city', loggedinuser.data.city);
+						localStorage.setItem('state', loggedinuser.data.state);
+						localStorage.setItem('pincode', loggedinuser.data.pincode);
+						localStorage.setItem('IdType', loggedinuser.data.idtype);
+						localStorage.setItem('idNumber', loggedinuser.data.idnumber);
 						this.router.navigate(['/user']);
 					} else if(role === "admin") {
 						this.router.navigate(['/admin']);
 					}
 					else if(role === "agent") {
-						sessionStorage.setItem('creator_role', loggedinuser.data.creator_role);
-						sessionStorage.setItem('creator_id', loggedinuser.data._id);
+						localStorage.setItem('creator_role', loggedinuser.data.creator_role);
+						localStorage.setItem('creator_id', loggedinuser.data._id);
 						this.router.navigate(['/agent']);
 					}
 				} else {

@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
 export class IsLoginService {
 	isLoggedIn(): Promise<string> {
 		if(typeof (Storage)!== undefined) {
-			if(sessionStorage.getItem('role')) {
-				return Promise.resolve(sessionStorage);
+			if(localStorage.getItem('role')) {
+				return Promise.resolve(localStorage);
 			}
 		}
-		return Promise.resolve(sessionStorage);
+		return Promise.resolve(localStorage);
 	}
 }
