@@ -33,6 +33,13 @@ export class AgentService {
       });
   }
 
+  updateUser(data, id): Observable<any> {
+    return this.http.put(this.serviceUrl + "updateregisters?id="+id, data, {headers: this.headers})
+      .map((response: Response) => {
+        return response && response.json();
+      });
+  }
+
   deleteUser(data): Observable<any> {
     return this.http.delete(this.serviceUrl + "deleteregisters?id="+data._id, {headers: this.headers})
       .map((response: Response) => {
