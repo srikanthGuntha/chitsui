@@ -24,6 +24,8 @@ export class AdminChitidsComponent implements OnInit {
     branches:any;
 
     branch:Branch;
+    public alertClass: string = "error";
+    public showChitIdsErrormsg: string = "";
     constructor(private chitIdService: ChitIdService, private branchService: BranchService) {
 
      this.chitids = new Array < ChitId > ();
@@ -65,6 +67,7 @@ private loadBranches(){
     cancel() {
         this.chitids.pop();
         this.selectedChitId = null;
+        this.showChitIdsErrormsg="";
     }
 
     editChitId(chitid : ChitId) {
@@ -75,23 +78,31 @@ private loadBranches(){
     }
 
     saveChitId() {
-        if(this.isNewRecord){
-            //add a new Branch
-             this.chitIdService.addChitId(this.selectedChitId).subscribe((resp : Response) => {
-                this.chitid = resp.json(),
-                this.loadChitIds();
-                this.loadBranches();
-            });
-            this.isNewRecord=false;
-            this.selectedChitId = null;
-        }
-        else{
-            //edit the record
-             this.chitIdService.updateChitIds(this.selectedChitId._id,this.selectedChitId).subscribe((resp : Response) => {
-                this.loadChitIds();
-            });
-            this.selectedChitId = null;
-            
+      if (this.selectedChitId.chitid !== "" && this.selectedChitId.branch.branchid !== ""){
+            this.showChitIdsErrormsg="";
+            this.alertClass="";
+            if(this.isNewRecord){
+                //add a new Branch
+                 this.chitIdService.addChitId(this.selectedChitId).subscribe((resp : Response) => {
+                    this.chitid = resp.json(),
+                    this.loadChitIds();
+                    this.loadBranches();
+                });
+                this.isNewRecord=false;
+                this.selectedChitId = null;
+            }
+            else{
+                //edit the record
+                 this.chitIdService.updateChitIds(this.selectedChitId._id,this.selectedChitId).subscribe((resp : Response) => {
+                    this.loadChitIds();
+                });
+                this.selectedChitId = null;
+                
+            }
+
+        }else{
+          this.showChitIdsErrormsg="Please fill all fileds";
+          this.alertClass="error";
         }
     }
 

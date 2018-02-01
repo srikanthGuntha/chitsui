@@ -6,6 +6,13 @@
           <h3>Manage Chits</h3>
         </div>
       </div>
+      <div class="row" ng-show="showLoginMsg">
+        <div class="col-sm-4">
+           <div *ngIf="showChitsErrormsg" [ngClass]="(alertClass =='error')?'alert alert-danger':'alert alert-success'">
+              {{showChitsErrormsg}}
+           </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-lg-6">
           <button class="btn btn-success btn-circle pull-right"
@@ -24,26 +31,6 @@
                 <th>Tenure</th>
               </tr>
             </thead>
-            <!-- <tbody>
-                <template [ngTemplateOutlet]="loadTemplate(chit)"></template>
-            </tbody>
-            <tbody>
-              <tr *ngFor="let chit of chits;let i=index">
-                <td>{{i + 1}}</td>
-                <td>{{chit.branch.branchname}}</td>
-                <td>{{chit.chitid.chitid}}</td>
-                <td>{{chit.chitvalue}}</td>
-                <td>{{chit.subfee}}</td>
-                <td>{{chit.tenure}}</td>
-                <td style="width: 70px;">
-                  <i class="glyphicon glyphicon-edit pointer"
-                  (click)="editChit(chit.id)" title="Edit"></i>
-                  <i class="glyphicon glyphicon-trash pointer"
-                  (click)="delete(chit.id)" title="Delete"></i>
-                  
-                </td>
-              </tr>
-            </tbody> -->
             <tbody>
               <tr *ngFor="let chit of chits;let i=index">
                 <template [ngTemplateOutlet]="loadTemplate(chit)" [ngOutletContext]="{ $implicit: chit, index: i }"></template>
@@ -92,9 +79,9 @@
       </td>
       
       <td>
-        <input type="button" value="Save" (click)="saveChit()" class="btn btn-success" />
-      </td>
-      <td>
-        <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+        <i class="glyphicon glyphicon-ok pointer"
+          (click)="saveChit()" title="Edit"></i>
+        <i class="glyphicon glyphicon-remove pointer"
+          (click)="cancel()" title="Delete"></i>
       </td>
   </template>

@@ -6,6 +6,13 @@
           <h3>Manage Branches</h3>
         </div>
       </div>
+      <div class="row" ng-show="showLoginMsg">
+        <div class="col-sm-4">
+           <div *ngIf="showErrormsg" [ngClass]="(alertClass =='error')?'alert alert-danger':'alert alert-success'">
+              {{showErrormsg}}
+           </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-lg-4">
          <button class="btn btn-success btn-circle pull-right" [disabled]="branchSelected()"
@@ -54,7 +61,4 @@
       <i class="glyphicon glyphicon-remove pointer"
       (click)="cancel()" title="Delete"></i>
    </td>
-
- <!--  <td><input type="button" value="Save" (click)="saveBranch()" class="btn btn-success" /></td>
-  <td><input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" /></td> -->
 </template>

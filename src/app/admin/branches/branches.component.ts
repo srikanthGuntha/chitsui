@@ -20,6 +20,8 @@ export class AdminBranchesComponent implements OnInit {
     selectedBranch : Branch;
     isNewRecord : boolean;
     branch:Branch;
+     public alertClass: string = "error";
+    public showErrormsg: string = "";
 
   constructor(private branchService: BranchService) {
 
@@ -55,6 +57,7 @@ export class AdminBranchesComponent implements OnInit {
     cancel() {
         this.branches.pop();
         this.selectedBranch = null;
+        this.showErrormsg="";
     }
 
     editBranch(branch : Branch) {
@@ -62,23 +65,30 @@ export class AdminBranchesComponent implements OnInit {
     }
 
     saveBranch() {
-        if(this.isNewRecord){
-            //add a new Branch
-             this.branchService.addBranch(this.selectedBranch).subscribe((resp : Response) => {
-                this.branch = resp.json(),
-                 this.loadBranches();
-            });
-            this.isNewRecord=false;
-            this.selectedBranch = null;
-        }
-        else{
-            //edit the record
-             this.branchService.updatebranches(this.selectedBranch._id,this.selectedBranch).subscribe((resp : Response) => {
-                 this.loadBranches();
-            });
-            this.selectedBranch = null;
-            
-        }
+      if (this.selectedBranch.branchname !== ""){
+            this.showErrormsg="";
+            this.alertClass="";
+            if(this.isNewRecord){
+                //add a new Branch
+                 this.branchService.addBranch(this.selectedBranch).subscribe((resp : Response) => {
+                    this.branch = resp.json(),
+                     this.loadBranches();
+                });
+                this.isNewRecord=false;
+                this.selectedBranch = null;
+            }
+            else{
+                //edit the record
+                 this.branchService.updatebranches(this.selectedBranch._id,this.selectedBranch).subscribe((resp : Response) => {
+                     this.loadBranches();
+                });
+                this.selectedBranch = null;
+                
+            }
+          }else{
+            this.showErrormsg="Please fill branch name";
+            this.alertClass="error";
+          }
     }
 
     deleteBranch(branch:Branch) {
