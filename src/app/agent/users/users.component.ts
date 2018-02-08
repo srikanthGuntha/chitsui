@@ -26,7 +26,11 @@ export class AgentUsersComponent implements OnInit {
       headerHeight: 45,
       rowSelection: 'single',
       onSelectionChanged: this.setSelection.bind(this),
-      animateRows: true
+      animateRows: true,
+      onRowEditingStopped: this.updateUser.bind(this),
+      onCellEditingStopped: function(event) {
+        //console.log("column",event);
+      }
     };
     private api: GridApi;
     private columnApi: ColumnApi;
@@ -145,8 +149,27 @@ export class AgentUsersComponent implements OnInit {
     private setSelection(): void {
       if (this.api) {
           let selectedData = this.api.getSelectedRows();
-          console.log(selectedData);
       }
+    }
+
+    private updateUser(selectedData) {
+              let updateData = {
+                "firstname": selectedData.data.firstname,
+                "lastname": selectedData.data.lastname,
+                "email": selectedData.data.email,
+                "mobile": selectedData.data.mobile
+              }
+              this.loaderService.display(true);
+              this.agentService.updateUser(updateData, selectedData.data._id)
+              .subscribe(result => {
+                if(result.success) {
+                  this.loaderService.display(false);
+                } else {
+                  this.loaderService.display(false);
+                  let code = result.code;
+                  console.log(code);
+                }
+            });
     }
 
     private refreshAggregates() {
