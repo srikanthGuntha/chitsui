@@ -35,6 +35,7 @@
 			<div class="col-lg-12">
 				<div *ngIf='showNoChitsText'>
 					<div class="join-context groups-section">
+						<h3>{{showNoChitsText}}<a [routerLink]="['/user/group']" *ngIf="noActiveChits">Groups</a></h3>
 					</div>
 				</div>
 			</div>

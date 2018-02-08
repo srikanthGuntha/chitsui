@@ -17,7 +17,7 @@ export class TransactionComponent implements OnInit {
   public selectedChitId: string = "";
   public showNoTransactionsText: string = "";
   public selectedChitsData: any = [];
-  public noActiveShits: boolean = false;
+  public noActiveChits: boolean = false;
   constructor(private isLoginService: IsLoginService, private router: Router, private authService: AuthenticationService,private chitsdataservice: ChitsService, private loaderService: LoaderService) { }
   ngOnInit() {
     this.loaderService.display(true);
@@ -33,12 +33,12 @@ export class TransactionComponent implements OnInit {
           result.data.forEach(function(data){
             if (data.chitstatus) {
               that.chitsData.push(data);
-              this.noActiveShits = false;
+              this.noActiveChits = false;
             }
           });
           if (!this.chitsData.length) {
             this.showNoTransactionsText = "No active Chits. Please Join Chits in ";
-            this.noActiveShits = true;
+            this.noActiveChits = true;
           }
         } else {
           var code = result.code;

@@ -15,7 +15,7 @@ import { MapErrorCodes } from '../../config/errorcodes';
 export class UserChitsComponent implements OnInit {
   public chitsData: any[] = [];
   public showNoChitsText:string = "";
-  public noActiveShits:boolean = false;
+  public noActiveChits:boolean = false;
 
   constructor(private isLoginService: IsLoginService, private router: Router, private getdataservice: GetDataService, private chitsdataservice: ChitsService, private loaderService: LoaderService) { }
 
@@ -31,10 +31,14 @@ export class UserChitsComponent implements OnInit {
       if (result.success) {
         this.loaderService.display(false);
         this.chitsData = result.data;
-        this.noActiveShits = false;
+        this.noActiveChits = false;
+        if (!this.chitsData.length) {
+          this.noActiveChits = true;
+          this.showNoChitsText = "You have no chits added. Please add here.";
+        }
       } else {
         this.loaderService.display(false);
-        this.noActiveShits = true;
+        this.noActiveChits = true;
         this.showNoChitsText = "You have no chits added. Please add here.";
         this.chitsData = [];
         var code = result.code;

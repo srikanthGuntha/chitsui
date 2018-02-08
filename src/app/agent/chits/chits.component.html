@@ -61,7 +61,7 @@
                       <div class="col-sm-12">
                         <select class="form-control" id="chitId" name="chitId"  name="chitId" [(ngModel)]="chits.chit_id" formControlName="chitId">
                             <option [ngValue]="undefined" disabled>Select Chit ID</option>
-                            <option *ngFor="let data of chitsData" [ngValue]="data.branch._id">{{data.chitid.chitid}}</option>
+                            <option *ngFor="let data of chitsData" [ngValue]="data._id">{{data.chitid.chitid}}</option>
                           </select>
                         <app-field-error-display 
                           [displayError]="isFieldValid('chitId')" 

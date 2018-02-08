@@ -9,7 +9,7 @@
         </div>
         </div>
         <div class="col-lg-12">
-        	<ag-grid-angular style="width: 1200px; height: 300px;" class="ag-fresh"
+        	<ag-grid-angular style="width: 902px; height: 300px;" class="ag-fresh"
 				    	#agGrid
 				    	id="myGrid"
 				    	class="ag-fresh"
@@ -95,7 +95,7 @@
                       </div>
                   </div>
                 </div>
-                <div class="form-group" [ngClass]="displayFieldCss('creatorRole')">
+                <div class="form-group" [ngClass]="displayFieldCss('creatorRole')" hidden="true">
                         <label class="control-label required col-sm-3" for="id">Creator Role:</label>
                         <div class="col-sm-9">
                           <select class="form-control" id="id" name="id"  name="creatorRole" [(ngModel)]="user.creator_role" formControlName="creatorRole">
@@ -194,7 +194,7 @@
                         </app-field-error-display>
                       </div>
                     </div>
-                    <div class="form-group" [ngClass]="displayFieldCss('creatorId')">
+                    <div class="form-group" [ngClass]="displayFieldCss('creatorId')" hidden="true">
                         <label class="control-label required col-sm-3" for="id">Creator Id:</label>
                         <div class="col-sm-9">
                           <select class="form-control" id="creatorId" name="creatorId"  name="creatorId" [(ngModel)]="user.creator_id" formControlName="creatorId">
