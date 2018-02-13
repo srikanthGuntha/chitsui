@@ -54,13 +54,13 @@ export class AgentUsersComponent implements OnInit {
                 checkboxSelection: true
             },
             {
-              width: 200,
+              width: 150,
               headerName: "First Name",
               field: "firstname",
               editable: true,
             },
             {
-              width: 200,
+              width: 150,
               headerName: "Last Name",
               field: "lastname",
               editable: true,
@@ -77,12 +77,12 @@ export class AgentUsersComponent implements OnInit {
               width: 200,
               editable: true,
             },
-            {
-              headerName: "Creator Role",
-              field: "creator_role",
-              width: 200,
-              editable: false,
-            },
+            // {
+            //   headerName: "Creator Role",
+            //   field: "creator_role",
+            //   width: 200,
+            //   editable: false,
+            // },
             { headerName: "Action",
               width: 150,
               cellRenderer: this.deleteButton.bind(this)
