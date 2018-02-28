@@ -1,4 +1,4 @@
-describe('Enter GURU99 Name', function() {
+describe('Simple Automation testing for Chits UI', function() {
  it('Should browse pages in csChits', function() {
  	browser.get('http://cschits.herokuapp.com');
     browser.sleep(4000);
