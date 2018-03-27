@@ -18,7 +18,7 @@
                     </div>
                  </div>
               </div>
-            <form (ngSubmit)="submitForm()" [formGroup]="registrationForm">
+            <form (ngSubmit)="submitForm()" [formGroup]="registrationForm" *ngIf="registered">
             <div class="row">
               <div class="col-sm-6">
                   <div class="form-group">
@@ -163,10 +163,16 @@
                         </app-field-error-display>
                       </div>
                     </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('idFile')">
+                      <label class="control-label col-sm-3" for="idNumber">Upload File:</label>
+                      <div class="col-sm-9">
+                        <input type="file" id="idFile" name="idFile" formControlName="idFile" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+                      </div>
+                    </div>
                     <div class="form-group" [ngClass]="displayFieldCss('dob')">
                       <label class="control-label required col-sm-3" for="dob">DOB:</label>
                       <div class="col-sm-9">
-                        <input type="date" class="form-control" placeHolder="Date of Birth" name="dob" [(ngModel)]="user.dob" formControlName="dob" id="datePicker">
+                        <input type="date" class="form-control" placeHolder="Date of Birth" name="dob" [(ngModel)]="user.dob" formControlName="dob" id="datePicker" min="1970-01-01" max="2000-01-01">
                         <app-field-error-display 
                         [displayError]="isFieldValid('dob')" 
                         errorMsg="Please inform your date of birth">

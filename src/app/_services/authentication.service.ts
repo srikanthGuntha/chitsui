@@ -22,7 +22,10 @@ export class AuthenticationService {
   }
 
   register(data): Observable<any> {
-    return this.http.post(this.serviceUrl + "register", data)
+    let headers = new Headers();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    return this.http.post(this.serviceUrl + "register", data, { headers: headers })
       .map((response: Response) => {
         return response && response.json();
       });

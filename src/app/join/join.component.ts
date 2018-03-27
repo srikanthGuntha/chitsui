@@ -15,6 +15,7 @@ export class JoinComponent implements OnInit {
   registrationForm : FormGroup;
   public alertClass: string = "error";
   public showRegistraionMsg: string = "";
+  public registered: boolean = true;
   
   public user:any = {};
     constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
@@ -34,7 +35,8 @@ export class JoinComponent implements OnInit {
       state: [null, Validators.required],
       pincode: [null, Validators.required],
       IdType: [null, Validators.required],
-      idNumber: [null, Validators.required]
+      idNumber: [null, Validators.required],
+      idFile: [null]
     });
   }
 
@@ -70,13 +72,25 @@ export class JoinComponent implements OnInit {
         });
   }
 
+  diff_years(dt2, dt1) {
+  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+   diff /= (60 * 60 * 24);
+  return Math.abs(Math.round(diff/365.25)); 
+ }
+
   submitForm() {
     if (this.registrationForm.valid) {
+      let years = this.diff_years(new Date(), new Date(this.user.dob));
+      if (years < 18) {
+        this.showRegistraionMsg = "Minimum Age should be greater than 18 years";
+        return false;
+      }
       this.authenticationService.register(this.user)
          .subscribe(result => {
             if(result.success) {
               this.alertClass = "success";
-              this.showRegistraionMsg = "Your registration was successfull. Please login now.";
+              this.registered = false;
+              this.showRegistraionMsg = "YOU ARE SUCCESSFULLY REGISTERED AND PENDING FOR ADMINISTRATOR APPROVAL";
               this.user = {};
               this.resetForm(this.registrationForm);
             } else {
@@ -112,5 +126,13 @@ export class JoinComponent implements OnInit {
       }
     });
   }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        this.user.idFile =  file;
+    }
+}
 
 }
