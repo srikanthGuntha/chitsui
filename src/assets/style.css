@@ -362,11 +362,15 @@ Fix for ngx-datatable when a footer is present, for IE10/11
   .has-overflow-y .visible {
     overflow-y : inherit;
   }
+}
 /*=====================================
   media Qwueries
   =====================================*/
 
   @media screen and (max-width: 699px) and (min-width: 375px) {
+    .login-context {
+      width: auto !important;
+    }
     .footer-content {
         padding: 0px !important;
     }
@@ -407,21 +411,7 @@ Fix for ngx-datatable when a footer is present, for IE10/11
     .join-title {
       margin-top: 15px !important;
     }
-    .login-context {
-      width: 100% !important;
-      border: none !important;
-      background: white !important;
-      margin-bottom: 100px !important;
-      margin-top: 0px !important;
-      border-radius: 0px !important;
-      padding: 0px !important;
-      padding-top: 30px !important;
-    }
     .login-button-styles {
       margin-left: 15px !important;
     }
-    /*.fa-search {
-      position: relative !important;
-      top: 26px !important;
-    }*/
 }
