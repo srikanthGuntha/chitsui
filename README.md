@@ -33,4 +33,12 @@ We also define the routes for the SPA here and their related components as follo
 * /agent/users => AgentUsersComponent
 * /agent/managechits => AgentManagementComponent
 
+#### Test cases (Automation)
+To Run automation test cases, please install protractor.js 
+npm install -g protractor
+webdriver-manager update
+In root folder, run "protractor protractor.conf.js" command to see automated testing in chrome browser.
+
 ###### (notice a pattern...?)
+
+
