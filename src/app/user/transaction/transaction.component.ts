@@ -30,12 +30,12 @@ export class TransactionComponent implements OnInit {
         if (result.success) {
           this.loaderService.display(false);
           let that = this;
-          result.data.forEach(function(data){
-            if (data.chitstatus) {
-              that.chitsData.push(data);
-              this.noActiveChits = false;
+          for (let i = 0; i < result.data.length; i++) {
+            if (result.data[i].chitstatus) {
+              that.chitsData.push(result.data[i]);
+              that.noActiveChits = false;
             }
-          });
+          }
           if (!this.chitsData.length) {
             this.showNoTransactionsText = "No active Chits. Please Join Chits in ";
             this.noActiveChits = true;
@@ -72,6 +72,7 @@ export class TransactionComponent implements OnInit {
     	this.chitsData.forEach(function(chit) {
     		if (chit.chit.chitid.chitid == event.chit.chitid.chitid) {
     			that.selectedChitsData = [];
+          chit.chit.chitstartdate = chit.chit.chitstartdate.slice(0,10);
     			that.selectedChitsData.push(chit);
     		}
     	});

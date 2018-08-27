@@ -32,6 +32,9 @@
     border: 1px solid #cccccc;
     display: inline-table;
     margin-top: 15px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
   }
   thead {
     background-color: #FF4537;

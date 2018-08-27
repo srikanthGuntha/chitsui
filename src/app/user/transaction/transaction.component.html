@@ -30,7 +30,7 @@
 	    	<p><span class="chits-label col-sm-3">Pay Status:</span>{{data1.paystatus===true ? "Paid" : "Not Paid"}}</p>
 	    	</div>
     	</div>
-    	<div class="chit-status-section col-md-6" *ngIf="selectedChitsData.length">
+    	<div class="chit-status-section col-md-6" *ngIf="selectedChitsData.length" style="overflow-x:auto;">
 	    	<div class="transaction-title" *ngIf="selectedChitsData.length"><h4>My Chit Status</h4></div>
 	    	<table class="table table-hover">
 					<thead>
