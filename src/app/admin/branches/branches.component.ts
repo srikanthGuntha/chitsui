@@ -95,12 +95,19 @@ export class AdminBranchesComponent implements OnInit {
        this.branchService.deletebranches(branch)
          .subscribe(result => {
            console.log(result);
+           if((result.success===false) && (result.code === 400101)){
+             console.log("in if");
+            this.showErrormsg = result.message;
+            this.alertClass="error";
+           }
+           else{
+             console.log("in else");
             this.loadBranches();
+            this.showErrormsg = "";
+            this.alertClass="";
+           }
          });
      }
-
-     
-
   private loadBranches(){
      this.branchService.getbranches()
       .subscribe((resp : Response) => {

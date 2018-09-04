@@ -43,6 +43,7 @@ export class BranchService{
       return this.http.delete(this.serviceUrl+"deletebranches?id="+data._id, {headers: this.headers})
       .map((response: Response) => {
           console.log(response);
+          return response && response.json();
       });
    }
 

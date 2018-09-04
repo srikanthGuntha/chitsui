@@ -52,5 +52,4 @@ export class ChitIdService{
           console.log(response);
       });
    }
-
 }
