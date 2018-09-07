@@ -110,7 +110,16 @@ private loadBranches(){
        this.chitIdService.deleteChitIds(chitid)
          .subscribe(result => {
            console.log(result);
-           this.loadChitIds();
+           if((result.success===false) && (result.code === 400101)){
+             console.log("in if");
+            this.showChitIdsErrormsg = result.message;
+            this.alertClass="error";
+           }
+           else{
+            this.loadChitIds();
+             this.showChitIdsErrormsg="";
+             this.alertClass="";
+           }
          });
      }
 

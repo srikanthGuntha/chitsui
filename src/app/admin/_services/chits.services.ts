@@ -40,7 +40,7 @@ export class ChitsService {
        return this.http.put(this.serviceUrl+"updatechits?id="+ chit._id, {
         branch:chit.branch,
         chitid:chit.chitid,
-        chitvalue:chit.chitValue,
+        chitvalue:chit.chitvalue,
         tenure:chit.tenure,
         subfee:chit.subfee
       }, {headers: this.headers})
@@ -54,6 +54,7 @@ export class ChitsService {
       return this.http.delete(this.serviceUrl+"deletechits?id="+data._id, {headers: this.headers})
       .map((response: Response) => {
           console.log(response);
+          return response && response.json();
       });
     }
 

@@ -50,6 +50,7 @@ export class ChitIdService{
       return this.http.delete(this.serviceUrl+"deletechitids?id="+data._id, {headers: this.headers})
       .map((response: Response) => {
           console.log(response);
+          return response && response.json();
       });
    }
 }
