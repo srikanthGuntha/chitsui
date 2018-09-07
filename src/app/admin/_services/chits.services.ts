@@ -38,8 +38,8 @@ export class ChitsService {
 
     updateChit(id:string,chit : Chit) : Observable < any > {
        return this.http.put(this.serviceUrl+"updatechits?id="+ chit._id, {
-        branch:chit.branch,
-        chitid:chit.chitid,
+        branch:chit.branch.branchid,
+        chitid:chit.chitid.chitid,
         chitvalue:chit.chitvalue,
         tenure:chit.tenure,
         subfee:chit.subfee
