@@ -52,7 +52,7 @@
 </template>
 
 <template #editTemplate let-index="index">
-  <td></td>
+  <td>{{index+1}}</td>
   <td><input type="text" [(ngModel)]="selectedBranch.branchname" /></td>
 
    <td>
