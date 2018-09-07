@@ -115,13 +115,4 @@ export class AdminBranchesComponent implements OnInit {
         this.branches = resp;
     });
   }
-
-  // private deleteBranch():any {
-  //   // change the "1" with the object id from the response
-  //   this.branchService.deletebranches("1")
-  //     .subscribe(result => {
-  //       console.log(result);
-  //     });
-  // }
-
 }

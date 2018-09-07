@@ -57,7 +57,7 @@
     </td>
   </template>
   <template #editTemplate let-chit let-index="index">
-      <td></td>
+      <td>{{index+1}}</td>
       <td>
         <select [(ngModel)]="selectedChit.branch">
          <option *ngFor="let branch of branches" value= {{branch._id}}>{{branch.branchname}}</option>
