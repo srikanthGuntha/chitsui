@@ -72,8 +72,6 @@ private loadBranches(){
 
     editChitId(chitid : ChitId) {
         this.selectedChitId = chitid;
-
-        console.log(this.selectedChitId);
         this.selectedChitId.branch.branchid = chitid.branch._id;
     }
 

@@ -59,12 +59,13 @@
   <template #editTemplate let-chit let-index="index">
       <td></td>
       <td>
-        <select [(ngModel)]="selectedChit.branch">
-         <option *ngFor="let branch of branches" value= {{branch._id}}>{{branch.branchname}}</option>
+        <select [(ngModel)]="selectedChit.branch.branchid">
+          <option value="">select branch</option>
+          <option *ngFor="let branch of branches" value= {{branch._id}}>{{branch.branchname}}</option>
        </select>
       </td>
       <td>
-        <select [(ngModel)]="selectedChit.chitid">
+        <select [(ngModel)]="selectedChit.chitid.chitid">
          <option *ngFor="let chitid of chitids" value= {{chitid._id}}>{{chitid.chitid}}</option>
        </select>
       </td>

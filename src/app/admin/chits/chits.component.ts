@@ -6,6 +6,8 @@ import {Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { BranchService } from '../_services/branches.service';
 import { ChitIdService } from '../_services/chitid.services';
+import {ChitId} from '../../models/chitid.model';
+import {Branch} from '../../models/branch.model';
 
 import 'rxjs/Rx';
 
@@ -26,6 +28,8 @@ export class AdminChitsComponent implements OnInit {
    isNewRecord : boolean;
    statusMessage:string;
    chitids :any;
+   chitid:ChitId;
+   branch:Branch;
    public alertClass: string = "error";
    public showChitsErrormsg: string = "";
 
@@ -115,7 +119,7 @@ loadTemplate(chit : Chit) {
         }
     }
     addChit(){
-       this.selectedChit =new Chit('','','','','',''); 
+       this.selectedChit =new Chit('',new ChitId('','',new Branch('','','')),'',new Branch('','',''),'',''); 
         this.chits
             .push(this.selectedChit);
         this.isNewRecord = true;
@@ -124,6 +128,8 @@ loadTemplate(chit : Chit) {
 
     editChit(chit : Chit) {
         this.selectedChit = chit;
+        this.selectedChit.branch.branchid = chit.branch._id;
+        this.selectedChit.chitid.chitid = chit.chitid._id;
     }
 
 
