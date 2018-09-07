@@ -82,7 +82,7 @@ loadTemplate(chit : Chit) {
     }
 
     saveChit() {
-      if(this.selectedChit.branch && this.selectedChit.chitid && this.selectedChit.chitValue && this.selectedChit.subfee &&this.selectedChit.tenure){
+      if(this.selectedChit.branch && this.selectedChit.chitid && this.selectedChit.chitvalue && this.selectedChit.subfee &&this.selectedChit.tenure){
             this.showChitsErrormsg="";
             this.alertClass="";
           if(this.isNewRecord){
@@ -128,9 +128,17 @@ loadTemplate(chit : Chit) {
 
 
   deleteChit(chit:Chit){
-        this.chitsService.deleteChit(chit).subscribe((resp : Response) => {
-            this.statusMessage = 'Record Deleted Successfully.',
+        this.chitsService.deleteChit(chit).subscribe((result) => {
+           console.log(result);
+           if((result.success===false) && (result.code === 400101)){
+             this.showChitsErrormsg=result.message;
+            this.alertClass="error";
+           }
+           else{
              this.loadChits();
+             this.showChitsErrormsg="";
+             this.alertClass="";
+           }
         });
     }
 
