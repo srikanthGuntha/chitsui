@@ -3,6 +3,18 @@
 The app.module.ts is reponsible for bootstrapping the Angular application. Here we inject all of the dependent modules, services,
 and components.
 
+## Building and Running the Application
+
+1. Install NPM (v3.10.10), Node (v6.10.3)
+  * https://nodejs.org/en/download/
+### Initial setup
+
+Run `npm install` to install the web project's npm package dependencies.
+
+### Build/Start Node Server
+
+Run `npm start` or `ng serve` to build the project. This will Start the Node Server.
+
 #### Routes
 
 We also define the routes for the SPA here and their related components as follows:
